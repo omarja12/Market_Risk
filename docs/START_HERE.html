@@ -1,1 +1,262 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Risk Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        section {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 4px;
+        }
+        
+        h2 {
+            font-size: 1.6em;
+            margin: 30px 0 20px 0;
+            color: #1a1a1a;
+            border-bottom: 2px solid #2a5298;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+            color: #2a5298;
+        }
+        
+        .content {
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .content p {
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            margin: 15px 0 15px 25px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .stat {
+            background: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: 600;
+            color: #2a5298;
+        }
+        
+        .stat-label {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .nav-button {
+            background: #2a5298;
+            color: white;
+            padding: 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .nav-button:hover {
+            background: #1e3c72;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .grid { grid-template-columns: 1fr; }
+            .nav-buttons { grid-template-columns: 1fr; }
+            section { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Market Risk Analysis</h1>
+        <p class="subtitle">Value-at-Risk Framework</p>
+    </header>
+    
+    <div class="container">
+        <section>
+            <h2>Project</h2>
+            <div class="grid">
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Years of Data</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Risk Factors</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Methodologies</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Confidence</div>
+                </div>
+            </div>
+            
+            <div class="content">
+                <p>Comprehensive quantitative analysis implementing Value-at-Risk (VaR) methodology for a multi-currency, multi-asset portfolio. The project analyzes 5 years of market data (September 2017 - September 2022) using EWMA volatility estimation and dual VaR approaches.</p>
+                
+                <p><strong>Portfolio:</strong></p>
+                <ul>
+                    <li>60% US equity (NASDAQ 100, β=1.6)</li>
+                    <li>40% German equity (DAX, β=1.3)</li>
+                    <li>Dual currency risk (USD/RUB, EUR/RUB)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Pages</h2>
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-button">Overview</a>
+                <a href="technical.html" class="nav-button">Technical</a>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Overview</h2>
+            <div class="content">
+                <p><strong>What is VaR?</strong></p>
+                <p>Value-at-Risk answers: "What's the worst-case loss at 99% confidence?" Used by banks, hedge funds, and insurance companies for risk management and regulatory compliance.</p>
+                
+                <p><strong>Key Findings:</strong></p>
+                <ul>
+                    <li>EWMA volatility increased 3-5x during crisis periods</li>
+                    <li>Pre-crisis correlations 0.3-0.5, crisis correlations 0.7-0.9</li>
+                    <li>1-day 1% VaR: 2.1% - 3.8% depending on period</li>
+                    <li>Historical VaR more accurate during tail events</li>
+                </ul>
+                
+                <p><strong>Market Events Analyzed:</strong></p>
+                <ul>
+                    <li>COVID-19 (March 2020): 25-35% equity decline, extreme volatility</li>
+                    <li>Russia-Ukraine (February 2022): 15% equity decline, 45-50% currency depreciation</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Methodology</h2>
+            <div class="content">
+                <p><strong>Risk Decomposition:</strong></p>
+                <p>Return(RUB) = Return(Equity) + Return(Forex)</p>
+                <p>Additive model separates market risk from currency risk for independent analysis.</p>
+                
+                <p><strong>Volatility Estimation:</strong></p>
+                <p>EWMA with λ = 0.94: Recent observations 6% weight, historical 94% weight. Captures crisis volatility spikes while maintaining stability.</p>
+                
+                <p><strong>VaR Approaches:</strong></p>
+                <ul>
+                    <li>Parametric: Assumes normal distribution, fast and elegant</li>
+                    <li>Historical: Uses actual past behavior, robust to extreme events</li>
+                    <li>Both calculated at 99% confidence level</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Technical Details</h2>
+            <div class="content">
+                <p><strong>Implementation:</strong></p>
+                <ul>
+                    <li>Python 3.x with Pandas, NumPy, Matplotlib, SciPy</li>
+                    <li>Daily log returns, 1,254 observations</li>
+                    <li>EWMA volatility recursion, covariance matrices</li>
+                </ul>
+                
+                <p><strong>Data:</strong></p>
+                <ul>
+                    <li>NASDAQ 100, DAX index values</li>
+                    <li>USD/RUB, EUR/RUB exchange rates</li>
+                    <li>September 2017 - September 2022</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p><strong>Market Risk Analysis | VaR Framework</strong></p>
+        <p style="margin-top: 10px;">Sep 2017 - Sep 2022 | EWMA Volatility | Parametric & Historical VaR | 99% Confidence</p>
+    </footer>
+</body>
+</html>

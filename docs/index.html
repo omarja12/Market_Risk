@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Risk Analysis - Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        nav {
+            background: white;
+            padding: 15px 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        nav a {
+            color: #2a5298;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            text-decoration: underline;
+        }
+        
+        section {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 4px;
+        }
+        
+        h2 {
+            font-size: 1.6em;
+            margin: 30px 0 20px 0;
+            color: #1a1a1a;
+            border-bottom: 2px solid #2a5298;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+            color: #2a5298;
+        }
+        
+        .content {
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .content p {
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            margin: 15px 0 15px 25px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .grid-item {
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .grid { grid-template-columns: 1fr; }
+            section { padding: 25px; }
+            nav a { display: block; margin: 10px 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Market Risk Analysis</h1>
+        <p class="subtitle">Value-at-Risk Framework - Project Overview</p>
+    </header>
+    
+    <nav>
+        <a href="START_HERE.html">← Home</a> | 
+        <a href="technical.html">Technical Details</a>
+    </nav>
+    
+    <div class="container">
+        <section>
+            <h2>What is VaR?</h2>
+            <div class="content">
+                <p>Value-at-Risk answers: <strong>"What's the maximum loss at 99% confidence level?"</strong></p>
+                
+                <p>Example: A $1M portfolio with 1-day 1% VaR of $30K means there's a 99% chance it won't lose more than $30K tomorrow.</p>
+                
+                <p><strong>Used by:</strong></p>
+                <ul>
+                    <li>Investment banks - set trading desk limits</li>
+                    <li>Hedge funds - size positions within risk budgets</li>
+                    <li>Insurance companies - model portfolio risk vs. claims</li>
+                    <li>Regulators - enforce Basel III capital requirements</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Key Concepts</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <h3>Beta (β)</h3>
+                    <p>Market sensitivity. US stocks β=1.6 (60% more volatile than market). German stocks β=1.3 (30% more volatile).</p>
+                </div>
+                <div class="grid-item">
+                    <h3>EWMA Volatility</h3>
+                    <p>Dynamic estimation with λ=0.94. Gives 6% weight to recent data, 94% to history. Captures crisis spikes.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Parametric VaR</h3>
+                    <p>Assumes normal distribution. Fast and elegant but underestimates tail risk during crises.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Historical VaR</h3>
+                    <p>Uses actual past returns. Robust to extreme events but limited by historical data availability.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Project Findings</h2>
+            <div class="content">
+                <p><strong>Volatility:</strong></p>
+                <ul>
+                    <li>Increased 3-5x during crisis periods</li>
+                    <li>Clustering evident around market shocks</li>
+                    <li>Mean reversion during recovery</li>
+                </ul>
+                
+                <p><strong>Correlations:</strong></p>
+                <ul>
+                    <li>Normal times: 0.3-0.5 (diversification works)</li>
+                    <li>Crisis times: 0.7-0.9 (diversification breaks down)</li>
+                </ul>
+                
+                <p><strong>VaR Estimates:</strong></p>
+                <ul>
+                    <li>1-day 1% Parametric VaR: 2.1% - 3.8%</li>
+                    <li>Historical VaR more accurate for tail events</li>
+                    <li>10-day VaR approximately √10 times 1-day</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Market Events</h2>
+            <div class="content">
+                <p><strong>COVID-19 (March 2020):</strong></p>
+                <ul>
+                    <li>NASDAQ down 25%, DAX down 35%</li>
+                    <li>Volatility spike 3-5x</li>
+                    <li>Diversification collapsed</li>
+                </ul>
+                
+                <p><strong>Russia-Ukraine (February 2022):</strong></p>
+                <ul>
+                    <li>Equity markets down 15%</li>
+                    <li>Currency depreciated 45-50%</li>
+                    <li>Portfolio value in RUB increased (currency effect dominated)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Methodology</h2>
+            <div class="content">
+                <p><strong>Risk Decomposition:</strong></p>
+                <p>Return(RUB) = Return(Equity) + Return(Forex)</p>
+                <p>This separates market risk from currency risk for independent analysis.</p>
+                
+                <p><strong>Volatility Estimation:</strong></p>
+                <p>EWMA formula with λ = 0.94 emphasizes recent observations while maintaining historical stability.</p>
+                
+                <p><strong>VaR Methods:</strong></p>
+                <ul>
+                    <li>Parametric: Assumes normal distribution</li>
+                    <li>Historical: Uses empirical distribution</li>
+                    <li>Both at 99% confidence level</li>
+                    <li>Both validated against real data</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Data & Scope</h2>
+            <div class="content">
+                <p><strong>Time Period:</strong> September 2017 - September 2022 (5 years, 1,254 observations)</p>
+                
+                <p><strong>Markets:</strong></p>
+                <ul>
+                    <li>NASDAQ 100 (US equities)</li>
+                    <li>DAX (German equities)</li>
+                    <li>USD/RUB (exchange rate)</li>
+                    <li>EUR/RUB (exchange rate)</li>
+                </ul>
+                
+                <p><strong>Portfolio:</strong></p>
+                <ul>
+                    <li>60% US exposure, 40% German exposure</li>
+                    <li>Multi-currency denominated in rubles</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    
+    <nav>
+        <a href="START_HERE.html">← Home</a> | 
+        <a href="technical.html">Technical Details →</a>
+    </nav>
+    
+    <footer>
+        <p><strong>Market Risk Analysis | VaR Framework</strong></p>
+        <p style="margin-top: 10px;">Sep 2017 - Sep 2022 | EWMA | Parametric & Historical VaR | 99% Confidence</p>
+    </footer>
+</body>
+</html>
