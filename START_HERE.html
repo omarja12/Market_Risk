@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market Risk Analysis - START HERE</title>
+    <title>Market Risk Analysis - Value-at-Risk Framework</title>
     <style>
         * {
             margin: 0;
@@ -12,312 +12,278 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 900px;
-            width: 100%;
-            padding: 60px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
         }
         
         header {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 20px;
             text-align: center;
-            margin-bottom: 50px;
         }
         
         h1 {
-            color: #1e3c72;
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 10px;
+            font-weight: 600;
         }
         
         .subtitle {
-            color: #666;
-            font-size: 1.3em;
-            margin-bottom: 10px;
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
         }
         
-        .tagline {
-            color: #2a5298;
-            font-size: 1.1em;
-            font-weight: 600;
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
         
-        .hero-box {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 30px;
-            border-radius: 8px;
-            margin: 30px 0;
-            text-align: center;
-        }
-        
-        .hero-box p {
-            font-size: 1.05em;
-            color: #333;
-            line-height: 1.8;
-        }
-        
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .nav-card {
+        section {
             background: white;
-            border: 2px solid #2a5298;
-            border-radius: 8px;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 4px;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            border-bottom: 2px solid #2a5298;
+            padding-bottom: 10px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            border: 1px solid #ddd;
             padding: 25px;
-            text-align: center;
-            transition: all 0.3s;
+            background: #fafafa;
             text-decoration: none;
             color: inherit;
-            cursor: pointer;
-        }
-        
-        .nav-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(42, 82, 152, 0.3);
-            border-color: #1e3c72;
-            background: #f8f9fa;
-        }
-        
-        .nav-card .emoji {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-        
-        .nav-card h3 {
-            color: #2a5298;
-            margin-bottom: 10px;
-            font-size: 1.3em;
-        }
-        
-        .nav-card p {
-            color: #666;
-            font-size: 0.95em;
-            margin-bottom: 15px;
-        }
-        
-        .nav-card .cta {
-            display: inline-block;
-            background: #2a5298;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 0.9em;
-            transition: background 0.3s;
-        }
-        
-        .nav-card:hover .cta {
-            background: #1e3c72;
-        }
-        
-        .quick-facts {
-            background: #f9f9f9;
-            border-left: 5px solid #2a5298;
-            padding: 25px;
-            margin: 30px 0;
+            transition: all 0.3s;
             border-radius: 4px;
         }
         
-        .quick-facts h4 {
-            color: #1e3c72;
-            margin-bottom: 15px;
+        .card:hover {
+            border-color: #2a5298;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .card h3 {
             font-size: 1.2em;
-        }
-        
-        .facts-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-        
-        .fact {
-            padding: 10px 0;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .fact .icon {
-            font-weight: bold;
+            margin-bottom: 10px;
             color: #2a5298;
         }
         
-        .fact-text {
-            flex: 1;
-        }
-        
-        .fact-text strong {
-            color: #1e3c72;
-            display: block;
-        }
-        
-        .fact-text span {
+        .card p {
+            font-size: 0.95em;
             color: #666;
-            font-size: 0.9em;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .stat {
+            background: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: 600;
+            color: #2a5298;
+        }
+        
+        .stat-label {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .content {
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .content p {
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            margin: 15px 0 15px 25px;
+        }
+        
+        li {
+            margin-bottom: 8px;
         }
         
         footer {
+            background: #1a1a1a;
+            color: white;
             text-align: center;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #ddd;
-            color: #666;
+            padding: 30px 20px;
+            margin-top: 50px;
             font-size: 0.9em;
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 30px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .facts-grid {
-                grid-template-columns: 1fr;
-            }
+            h1 { font-size: 1.8em; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            section { padding: 25px; }
+            header { padding: 40px 20px; }
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>Market Risk Analysis</h1>
+        <p class="subtitle">Value-at-Risk Framework for Multi-Currency Portfolio</p>
+    </header>
+    
     <div class="container">
-        <header>
-            <h1>Market Risk Analysis</h1>
-            <p class="subtitle">Value-at-Risk Quantification</p>
-            <p class="tagline">Professional Quantitative Finance Project</p>
-        </header>
-        
-        <div class="hero-box">
-            <p>Welcome! This is a professional-grade Value-at-Risk analysis demonstrating expertise in quantitative finance, risk modeling, and Python development.</p>
-            <p style="margin-top: 15px; font-weight: 600;">Choose where to start below based on how much time you have and what you need.</p>
-        </div>
-        
-        <div class="quick-facts">
-            <h4>⚡ Quick Facts About This Project</h4>
-            <div class="facts-grid">
-                <div class="fact">
-                    <div class="icon">📊</div>
-                    <div class="fact-text">
-                        <strong>5 Years of Data</strong>
-                        <span>Sept 2017 - Sept 2022</span>
-                    </div>
+        <section>
+            <h2>Project Overview</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Years of Data</div>
                 </div>
-                <div class="fact">
-                    <div class="icon">🌍</div>
-                    <div class="fact-text">
-                        <strong>Multi-Currency</strong>
-                        <span>USD, EUR, RUB exposure</span>
-                    </div>
+                <div class="stat">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Risk Factors</div>
                 </div>
-                <div class="fact">
-                    <div class="icon">📈</div>
-                    <div class="fact-text">
-                        <strong>Multiple Approaches</strong>
-                        <span>Parametric + Historical VaR</span>
-                    </div>
+                <div class="stat">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Methodologies</div>
                 </div>
-                <div class="fact">
-                    <div class="icon">🔬</div>
-                    <div class="fact-text">
-                        <strong>Production-Grade</strong>
-                        <span>Industry-standard methodology</span>
-                    </div>
+                <div class="stat">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Confidence</div>
                 </div>
             </div>
-        </div>
-        
-        <h2 style="color: #1e3c72; font-size: 1.8em; margin: 40px 0 30px 0; text-align: center;">Choose Your Entry Point</h2>
-        
-        <div class="nav-grid">
-            <a href="index.html" class="nav-card">
-                <div class="emoji">🎨</div>
-                <h3>Beautiful Overview</h3>
-                <p>Start here for an attractive introduction to the project, theory, and applications.</p>
-                <div class="cta">View Project →</div>
-            </a>
             
-            <a href="getting-started.html" class="nav-card">
-                <div class="emoji">📚</div>
-                <h3>Getting Started</h3>
-                <p>Guided learning paths based on your time and technical level. Includes FAQ and setup instructions.</p>
-                <div class="cta">Read Guide →</div>
-            </a>
-            
-            <a href="README.md" class="nav-card">
-                <div class="emoji">📄</div>
-                <h3>Full Documentation</h3>
-                <p>Comprehensive README with theory, methodology, technical details, and real-world applications.</p>
-                <div class="cta">Read Docs →</div>
-            </a>
-            
-            <a href="technical.html" class="nav-card">
-                <div class="emoji">🔬</div>
-                <h3>Technical Deep Dive</h3>
-                <p>Mathematical formulas, detailed derivations, and implementation specifics. For technical teams.</p>
-                <div class="cta">View Math →</div>
-            </a>
-        </div>
-        
-        <div class="quick-facts">
-            <h4>⏱️ Quick Access by Time Available</h4>
-            <div class="facts-grid">
-                <div class="fact">
-                    <div class="icon">⏱️</div>
-                    <div class="fact-text">
-                        <strong>15 minutes?</strong>
-                        <span>→ Start with index.html</span>
-                    </div>
-                </div>
-                <div class="fact">
-                    <div class="icon">⏲️</div>
-                    <div class="fact-text">
-                        <strong>1 hour?</strong>
-                        <span>→ Read README.md + technical.html</span>
-                    </div>
-                </div>
-                <div class="fact">
-                    <div class="icon">🕐</div>
-                    <div class="fact-text">
-                        <strong>Deep Dive?</strong>
-                        <span>→ Review code + PDF report</span>
-                    </div>
-                </div>
-                <div class="fact">
-                    <div class="icon">💼</div>
-                    <div class="fact-text">
-                        <strong>Career Use?</strong>
-                        <span>→ See getting-started.html</span>
-                    </div>
-                </div>
+            <div class="content">
+                <p>This project implements a Value-at-Risk (VaR) framework for a Russian investor's diversified portfolio with US and German equity exposure, denominated in Russian rubles. The analysis covers September 2017 to September 2022, encompassing major market events including COVID-19 and geopolitical shocks.</p>
+                
+                <p><strong>Key components:</strong></p>
+                <ul>
+                    <li>60% US equity exposure (NASDAQ 100, β=1.6)</li>
+                    <li>40% German equity exposure (DAX, β=1.3)</li>
+                    <li>Dual currency risk (USD/RUB, EUR/RUB)</li>
+                    <li>EWMA volatility estimation (λ=0.94)</li>
+                    <li>Parametric and Historical VaR methods</li>
+                </ul>
             </div>
-        </div>
+        </section>
         
-        <footer>
-            <p><strong>Professional Quantitative Analysis</strong></p>
-            <p style="margin-top: 10px;">
-                <strong>Project Period:</strong> September 3, 2017 - September 3, 2022 | 
-                <strong>Methodology:</strong> EWMA Volatility, Parametric & Historical VaR | 
-                <strong>Confidence Level:</strong> 99% (1% significance)
-            </p>
-            <p style="margin-top: 15px; opacity: 0.7;">
-                This project demonstrates expertise in quantitative finance, risk modeling, Python development, and statistical analysis. Perfect for remote roles in financial technology, risk management, and quantitative research.
-            </p>
-        </footer>
+        <section>
+            <h2>Documentation</h2>
+            <div class="grid">
+                <a href="README.md" class="card">
+                    <h3>README</h3>
+                    <p>Complete documentation with theory, methodology, and skills demonstrated</p>
+                </a>
+                <a href="index.html" class="card">
+                    <h3>Project Overview</h3>
+                    <p>Comprehensive explanation of the analysis, theory, and applications</p>
+                </a>
+                <a href="technical.html" class="card">
+                    <h3>Technical Details</h3>
+                    <p>Mathematical formulas and implementation specifics</p>
+                </a>
+                <a href="getting-started.html" class="card">
+                    <h3>Getting Started</h3>
+                    <p>Learning paths, FAQ, and setup instructions</p>
+                </a>
+            </div>
+        </section>
+        
+        <section>
+            <h2>What This Project Demonstrates</h2>
+            <div class="content">
+                <p><strong>Quantitative Finance Skills</strong></p>
+                <ul>
+                    <li>Value-at-Risk modeling and estimation</li>
+                    <li>EWMA volatility and correlation estimation</li>
+                    <li>Portfolio theory and risk decomposition</li>
+                    <li>Multi-factor risk models</li>
+                </ul>
+                
+                <p><strong>Technical Skills</strong></p>
+                <ul>
+                    <li>Python (Pandas, NumPy, Matplotlib, SciPy)</li>
+                    <li>Jupyter notebooks and reproducible analysis</li>
+                    <li>Time-series data processing</li>
+                    <li>Statistical analysis and hypothesis testing</li>
+                </ul>
+                
+                <p><strong>Professional Qualities</strong></p>
+                <ul>
+                    <li>Problem decomposition and complex problem-solving</li>
+                    <li>Handling real-world data with market crises</li>
+                    <li>Validation across multiple methodologies</li>
+                    <li>Clear technical communication</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Real-World Applications</h2>
+            <div class="content">
+                <p>This methodology is used by investment banks, hedge funds, insurance companies, and pension funds for:</p>
+                <ul>
+                    <li>Trading desk risk limits and position sizing</li>
+                    <li>Portfolio risk monitoring and reporting</li>
+                    <li>Regulatory capital requirements (Basel III)</li>
+                    <li>Stress testing and scenario analysis</li>
+                    <li>Investment decision-making and hedging strategies</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Files</h2>
+            <div class="content">
+                <p><strong>Original Project Files:</strong></p>
+                <ul>
+                    <li>Project_Market_Risk_v6.ipynb - Complete Jupyter notebook with all analysis</li>
+                    <li>2122_RM_Data.xlsx - Historical market data (5 years)</li>
+                    <li>Market_Risk_Report.pdf - Professional findings report</li>
+                </ul>
+                
+                <p><strong>Documentation Files:</strong></p>
+                <ul>
+                    <li>README.md - Main documentation</li>
+                    <li>index.html - Project overview page</li>
+                    <li>technical.html - Mathematical details</li>
+                    <li>getting-started.html - Learning guides and FAQ</li>
+                    <li>PROJECT_SUMMARY.md - Executive summary</li>
+                    <li>00_FILES_GUIDE.md - Navigation guide</li>
+                </ul>
+            </div>
+        </section>
     </div>
+    
+    <footer>
+        <p><strong>Market Risk Analysis | Value-at-Risk Framework</strong></p>
+        <p style="margin-top: 10px;">Analysis period: September 2017 - September 2022 | Methodology: EWMA, Parametric & Historical VaR | Confidence: 99%</p>
+    </footer>
 </body>
 </html>
