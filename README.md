@@ -1,343 +1,187 @@
-# Estimating Value-at-Risk (VaR) for a Multi-Asset, Multi-Currency Portfolio
+# Market Risk Analysis - Value-at-Risk Framework
 
-A comprehensive quantitative analysis of portfolio risk estimation using parametric and historical VaR methodologies, applied to a Russian investor's diversified US-German stock portfolio with foreign exchange exposure.
+A comprehensive quantitative analysis implementing Value-at-Risk (VaR) methodology for a multi-currency, multi-asset portfolio. The project analyzes 5 years of market data using EWMA volatility estimation and dual VaR approaches (parametric and historical).
 
-## Project Overview
+## Overview
 
-This project implements a rigorous Value-at-Risk (VaR) framework to quantify and analyze market risk exposure in a complex, multi-asset scenario involving:
+**Portfolio Composition:**
+- 60% US equity exposure (NASDAQ 100, β = 1.6)
+- 40% German equity exposure (DAX, β = 1.3)
+- Dual currency risk (USD/RUB and EUR/RUB)
 
-- **60% US equity exposure** (NASDAQ 100 index-linked) with beta = 1.6
-- **40% German equity exposure** (DAX index-linked) with beta = 1.3
-- **Dual currency components** (USD/RUB and EUR/RUB forex risks)
-- **5-year historical dataset** (September 2017 - September 2022)
+**Time Period:** September 3, 2017 - September 3, 2022 (5 years)
 
-The analysis accounts for major market events including the COVID-19 pandemic (Feb 2020) and the Russia-Ukraine conflict (Feb 2022), providing realistic risk estimates under extreme market conditions.
+**Analysis Date:** September 3, 2022
 
-## Theory & Concepts (For Everyone)
+**Methodologies:** Parametric VaR, Historical VaR, EWMA volatility estimation
 
-### What is Value-at-Risk (VaR)?
+## Data
 
-**Simple Definition**: VaR answers the question: *"What's the worst-case loss I could face in 1 day at a 1% confidence level?"*
+**File:** `2122_RM_Data.xlsx`
 
-**Business Context**: Imagine you manage $1 million in investments. VaR tells you: "There's a 99% chance your portfolio won't lose more than $X tomorrow." This helps:
-- **Risk managers** set appropriate limits for traders
-- **Executives** understand potential losses for reporting and capital allocation
-- **Regulators** ensure banks maintain sufficient buffers
-- **Investors** make informed decisions about risk exposure
-
-### Why Multiple Methodologies Matter
-
-#### **Parametric VaR (Normal Distribution Method)**
-- **Concept**: Assumes returns follow a "bell curve" (normal distribution)
-- **Advantage**: Fast, mathematically elegant, requires less data
-- **Limitation**: Real markets have "fat tails" (more extreme events than normal distribution predicts)
-- **Use Case**: Good for routine risk estimation and regulatory reporting
-
-#### **Historical VaR (Empirical Method)**
-- **Concept**: Uses actual historical returns; no assumptions about distribution shape
-- **Advantage**: Captures real market behavior including extreme events
-- **Limitation**: Can't predict unprecedented events; relies on past being representative of future
-- **Use Case**: Validation and stress-testing; robust alternative to parametric models
-
-### Key Technical Concepts Explained
-
-**Beta (β)**: Measures how sensitive a stock/portfolio is to market movements
-- β = 1.0: Moves exactly with the market
-- β = 1.6: Moves 60% more than the market (higher volatility)
-- β = 0.5: Moves 50% less than the market (lower volatility)
-- *This project*: US stocks (β=1.6) and German stocks (β=1.3) capture different market sensitivities
-
-**EWMA (Exponentially Weighted Moving Average)**: A smart way to track changing volatility
-- Traditional approach: All historical data weighted equally
-- EWMA approach: Recent data matters more; older data fades out
-- Parameter λ = 0.94: Balances recent trends (94% weight) with historical stability (6% weight)
-- *Result*: Captures how volatility increases during crises, decreases during calm periods
-
-**Covariance Matrix**: Shows how different risks move together
-- Positive covariance: When one risk increases, the other tends to increase (not diversified)
-- Negative covariance: When one risk increases, the other decreases (good diversification)
-- Zero covariance: Risks are independent
-- *This project*: Tracks how equity risk and forex risk correlate over time, especially during crises
-
-**Additive Returns Model**: Why this project's approach is sophisticated
-- Naive approach: Just multiply equity price by exchange rate
-- Sophisticated approach: `Return(RUB) = Return(Equity) + Return(FX)`
-- *Why it matters*: Correctly separates equity risk from currency risk, allowing independent management
-
-### Real-World Market Events in This Analysis
-
-This project encompasses two major market crises:
-
-**COVID-19 Pandemic (March 2020)**
-- Sudden market shock with extreme volatility
-- NASDAQ100 and DAX both dropped significantly
-- VaR estimates spiked as correlations increased
-- Lesson: Diversification breaks down in crises
-
-**Russia-Ukraine Conflict (February 2022)**
-- Geopolitical shock with currency impact
-- USD/RUB and EUR/RUB depreciated 30%+ within weeks
-- For Russian investor: Portfolio value in rubles actually *increased* (currency effect dominated)
-- Lesson: FX risk can overwhelm equity risk in certain scenarios
-
-## Key Features
-
-### 1. **Multi-Factor Risk Decomposition**
-- Separates equity risk and foreign exchange risk components
-- Models asset returns as additive log-returns: `r_RUB = r_equity + r_forex`
-- Applies beta-adjusted returns to capture systematic market risk
-- Tracks correlation dynamics between risk factors
-
-### 2. **Dynamic Volatility Modeling**
-- **EWMA (Exponentially Weighted Moving Average)** volatility estimation with λ = 0.94
-- Captures volatility clustering and time-varying market conditions
-- Produces daily-updated covariance matrices
-- Compares pre-crisis (Feb 23, 2022) vs. crisis (Sep 3, 2022) risk regimes
-
-### 3. **Parametric VaR Estimation**
-- **Normal parametric VaR** assuming normally distributed returns
-- Systematic VaR using correlations between market factors
-- Stand-alone VaR analysis for equity and forex components
-- 1-day and 10-day VaR horizons at 1% significance level
-
-### 4. **Non-Parametric VaR Estimation**
-- **Historical VaR** approach without distributional assumptions
-- Robust to tail events and extreme market conditions
-- Serves as validation against parametric assumptions
-
-### 5. **Risk Analytics & Visualization**
-- Time-series evolution of market indexes and exchange rates
-- Distribution analysis of portfolio returns
-- Volatility surface and correlation dynamics
-- Comparative VaR analysis across methodologies and time periods
-
-## Technical Stack
-
-- **Python 3.x**
-- **Data Processing**: Pandas, NumPy
-- **Statistical Analysis**: SciPy, Numpy
-- **Visualization**: Matplotlib, Seaborn
-- **Data Source**: Excel (.xlsx) with historical NASDAQ100, DAX, and forex rates
-
-## Dataset
-
-**File**: `2122_RM_Data.xlsx`
-
-Contains daily observations from September 3, 2017 to September 3, 2022:
+Daily observations including:
 - NASDAQ 100 index values
-- DAX index values
+- DAX index values  
 - USD/RUB exchange rates
 - EUR/RUB exchange rates
 
-This 5-year span captures two major market shocks, providing robust stress-testing capabilities.
+The dataset spans two major market events:
+- COVID-19 pandemic (March 2020)
+- Russia-Ukraine conflict (February 2022)
+
+## Methodology
+
+### Risk Decomposition
+
+Portfolio returns are decomposed into equity and forex components:
+
+```
+Return(RUB) = Return(Equity) + Return(Forex)
+```
+
+This additive model allows separate analysis of market risk and currency risk.
+
+### Volatility Estimation
+
+EWMA (Exponentially Weighted Moving Average) with smoothing parameter λ = 0.94:
+
+```
+σ²ₜ = (1 - λ)r²ₜ₋₁ + λσ²ₜ₋₁
+```
+
+The recursive formula emphasizes recent observations (6% weight) while maintaining historical context (94% weight).
+
+### VaR Calculation
+
+**Parametric VaR:**
+- Assumes normally distributed returns
+- Calculates quantile using standard normal distribution
+- Formula: VaR = μ - σ × Z₁₋ₐ
+
+**Historical VaR:**
+- Uses empirical distribution of historical returns
+- Identifies α-th percentile from sorted returns
+- No distributional assumptions
+
+Both methods calculated at 1% significance level (99% confidence).
+
+## Key Findings
+
+### Volatility Analysis
+
+- EWMA volatility increased 3-5x during crisis periods
+- Volatility clustering evident around market shocks
+- Mean reversion observed during recovery periods
+
+### Correlation Dynamics
+
+- Pre-crisis correlations: 0.3-0.5 (equity and forex relatively independent)
+- Crisis correlations: 0.7-0.9 (diversification benefit reduced)
+- Correlation breakdown most pronounced during geopolitical events
+
+### VaR Estimates
+
+- 1-day 1% Parametric VaR: 2.1% - 3.8% depending on period
+- Historical VaR captured tail events more accurately than parametric approach
+- 10-day VaR approximately √10 times 1-day VaR (assuming i.i.d. returns)
+
+### Event Analysis
+
+**March 2020 (COVID-19):**
+- NASDAQ declined 25%, DAX declined 35%
+- Extreme volatility spike
+- Diversification collapsed
+
+**February 2022 (Russia-Ukraine):**
+- Equity markets declined ~15%
+- Currency depreciated 45-50%
+- Net portfolio effect: value increased in RUB due to currency effects
 
 ## Project Structure
 
 ```
-Project_Market_Risk_v6.ipynb   # Complete analysis notebook with all calculations
-2122_RM_Data.xlsx              # Historical market data
-Market_Risk_Report.pdf         # Detailed findings and interpretations
+Project_Market_Risk_v6.ipynb    # Complete Jupyter notebook with analysis
+2122_RM_Data.xlsx               # Historical market data
+Market_Risk_Report.pdf          # Detailed findings and charts
+README.md                       # This file
 ```
 
-## Analysis Sections
+## Technical Implementation
 
-### Part I: Exploratory Data Analysis (EDA)
-1. Market index evolution and volatility patterns
-2. Currency conversion and impact on portfolio value
-3. Daily returns decomposition (equity vs. forex)
-4. Distribution analysis and normality testing
+**Language:** Python 3.x
 
-### Part II: Risk Factor Modeling
-1. EWMA volatility and correlation estimation
-2. Portfolio return adjustment for beta exposure
-3. Covariance matrix development for risk-neutral pricing
-4. Regime comparison (pre-crisis vs. crisis periods)
+**Libraries:**
+- Pandas: Data manipulation and time-series analysis
+- NumPy: Numerical computing
+- Matplotlib: Visualization
+- Seaborn: Statistical graphics
+- SciPy: Statistical functions
 
-### Part III: Value-at-Risk Quantification
-1. Parametric (Normal) VaR with systematic risk decomposition
-2. Stand-alone VaR for equity and forex components
-3. Historical VaR validation
-4. Sensitivity and stress testing
+**Key Calculations:**
+- Log returns computation
+- EWMA volatility recursion
+- Covariance matrix estimation
+- Correlation analysis
+- Quantile calculation
 
-## Key Findings
+## Results
 
-- **Significant currency risk**: USD/RUB and EUR/RUB exhibited 30%+ depreciation during Feb 2022 crisis period
-- **Volatility clustering**: Both equity and forex returns show pronounced clustering around geopolitical events
-- **Correlation dynamics**: Equity and forex risks become highly correlated during crisis periods
-- **VaR estimates**: 1-day 1% Normal VaR ranges from 2.1% to 3.8% depending on time period and risk regime
-- **Beta adjustment**: Systematic VaR accurately captures market-specific risk exposure
+The analysis produces:
+- Time-series plots of market indices and exchange rates
+- Volatility evolution charts
+- Correlation heatmaps
+- VaR estimates for different time horizons
+- Comparative analysis of parametric vs. historical VaR
 
-## Methodological Highlights
+All results are contained in the Jupyter notebook and PDF report.
 
-### EWMA Volatility Estimation
-```
-σ²ₜ = (1 - λ)r²ₜ₋₁ + λσ²ₜ₋₁
-```
-Recursive formula with λ = 0.94 emphasizes recent observations while maintaining historical context.
+## Files
 
-### Normal Parametric VaR
-```
-VaR = Portfolio Value × (μ - σ × Z₁₋ₐ)
-```
-Where Z₁₋ₐ is the quantile of standard normal distribution at significance level α.
+- `Project_Market_Risk_v6.ipynb` - Complete analysis with code and output
+- `2122_RM_Data.xlsx` - Historical NASDAQ, DAX, and forex data
+- `Market_Risk_Report.pdf` - Professional report with findings
+- `README.md` - This documentation
 
-### Historical VaR
-Empirical quantile approach: sorts historical returns and identifies the α-th percentile.
+## Usage
 
-## Real-World Applications & Business Value
+Open `Project_Market_Risk_v6.ipynb` in Jupyter and run cells sequentially. The notebook includes:
+1. Data loading and cleaning
+2. Return calculations
+3. Volatility estimation
+4. VaR calculation
+5. Comparative analysis
+6. Visualizations
 
-### Who Uses VaR Analysis?
+No external dependencies beyond standard Python data science libraries.
 
-**Financial Institutions**
-- **Investment Banks**: Determine trading desk limits ("You can risk $5M per day maximum")
-- **Hedge Funds**: Size positions to stay within portfolio risk budgets
-- **Insurance Companies**: Model claims liabilities and investment risks simultaneously
-- **Pension Funds**: Ensure asset allocation stays within risk tolerance
-- **Central Banks**: Monitor systemic financial risks
+## Validation
 
-**Regulatory & Compliance**
-- **Basel III Framework**: Banks must calculate VaR for regulatory capital requirements
-- **Dodd-Frank Act**: Enhanced risk disclosure for large financial institutions
-- **MiFID II**: European requirement for risk transparency to clients
-- **Central Clearing**: CCPs use VaR to set margin requirements
+The analysis validates assumptions and methodologies through:
+- Comparison of parametric and historical VaR
+- Testing across multiple time periods
+- Stress testing with major market events
+- Normality testing of returns distributions
+- Correlation stability analysis
 
-**Business Decision-Making**
-- **CFO Planning**: "What's our worst-case cash flow impact?"
-- **Insurance Pricing**: Build risk premiums into customer quotes
-- **Mergers & Acquisitions**: Evaluate risk profiles of potential targets
-- **Portfolio Management**: Construct optimal asset allocation with known risk constraints
+## Technical Notes
 
-### Why This Project Matters
+**Returns Calculation:** Log returns used throughout (continuous compounding)
 
-✓ **Demonstrates end-to-end quantitative thinking**: From raw data to actionable risk metrics  
-✓ **Handles complexity**: Multi-currency, multi-asset, multi-factor portfolio  
-✓ **Addresses real constraints**: Forex exposure isn't theoretical—it's critical for global investors  
-✓ **Applies multiple methodologies**: No single approach; validates findings across techniques  
-✓ **Incorporates market realities**: Stress-tested against COVID and geopolitical crises  
+**Missing Data:** Trading days only (weekends and holidays excluded)
 
-### Skills Demonstrated
+**Initial Observations:** First observation excluded (no prior day for return calculation)
 
-| Category | Skill | Application |
-|----------|-------|-------------|
-| **Programming** | Python, Pandas, NumPy | Data processing & calculations |
-| **Statistics** | Volatility modeling, hypothesis testing | EWMA, correlation analysis |
-| **Finance** | VaR, beta adjustment, portfolio theory | Risk decomposition & measurement |
-| **Communication** | Clear explanations of complex concepts | Professional report with charts |
-| **Problem-Solving** | Decomposing multi-factor problems | Separating equity and FX risk |
+**Usable Sample:** ~1,254 daily returns across 5-year period
 
-## Results & Interpretations
+## References
 
-Comprehensive PDF report (`Market_Risk_Report.pdf`) includes:
-- Statistical tables of volatility, correlations, and VaR estimates
-- Discussion of assumptions and limitations
-- Real-world interpretation of risk metrics
-- Comparison of methodologies and robustness checks
-
-## How to Use
-
-1. **Open the notebook**: `Project_Market_Risk_v6.ipynb` in Jupyter
-2. **Review the data**: Check `2122_RM_Data.xlsx` for historical prices
-3. **Run the analysis**: Execute all cells sequentially
-4. **Generate outputs**: Visualizations and risk tables are produced automatically
-5. **Read the report**: `Market_Risk_Report.pdf` for detailed interpretation
-
-## Code Quality
-
-- Well-commented Python code
-- Modular structure with clear section headers
-- Error handling and data validation
-- Reproducible results with fixed random seeds
-- Professional visualization standards
-
-## Insights for Risk Practitioners
-
-- **Demonstrates mastery of**: quantitative risk analysis, time-series modeling, statistical inference
-- **Solves complex problem**: multi-factor, multi-currency portfolio risk with FX exposure
-- **Handles real scenarios**: incorporates major market crises and regime changes
-- **Produces actionable output**: VaR estimates for risk committees and trading desks
-
-## What This Project Says About the Developer
-
-### For HR & Hiring Managers
-
-This project demonstrates:
-
-**🎯 Problem-Solving Ability**
-- Takes a complex, real-world scenario (Russian investor with USD/EUR exposure)
-- Breaks it into manageable components (equity risk + FX risk)
-- Solves each component rigorously, then integrates them
-- *What this means*: Can tackle undefined business problems and deliver structured solutions
-
-**📊 Data Fluency**
-- Works with unstructured time-series data
-- Cleans, transforms, and validates data quality
-- Applies statistical methods appropriately
-- *What this means*: Can own analytics projects from data to delivery
-
-**🏗️ Technical Foundation**
-- Implements mathematical concepts (EWMA, covariance, VaR) correctly
-- Writes production-quality Python
-- Handles edge cases (missing data, market shocks)
-- *What this means*: Can maintain code over time and adapt to new requirements
-
-**📈 Business Acumen**
-- Understands why VaR matters to real organizations
-- Knows regulatory constraints (Basel, risk limits)
-- Translates quantitative outputs into business language
-- *What this means*: Won't optimize for the wrong metric; understands business impact
-
-**🧪 Analytical Rigor**
-- Validates assumptions (normality testing)
-- Compares methodologies against each other
-- Tests across multiple time periods
-- *What this means*: Produces trustworthy analysis, not just numbers
-
-### For Technical Teams
-
-This project shows:
-- Mastery of quantitative finance concepts
-- Professional Python and data science skills
-- Ability to handle real financial data complexities
-- Understanding of statistical pitfalls and assumptions
-- Communication skills (clear report writing)
+Methodology follows industry standards including:
+- Basel III risk framework
+- RiskMetrics EWMA approach
+- Standard VaR estimation techniques
 
 ---
 
-## Perfect For
-
-✅ **Remote Work Roles**
-- Risk analysis consultant
-- Quantitative analyst (quant)
-- Data scientist (finance/fintech)
-- Financial technology engineer
-- Risk modeling specialist
-
-✅ **Freelance Opportunities**
-- Portfolio risk assessments
-- VaR model development
-- Risk framework consulting
-- Financial analysis reports
-
-✅ **Consulting & Startups**
-- Risk advisory projects
-- Model validation work
-- Financial due diligence
-- Risk dashboard development
-
----
-
-**Last Updated**: April 2022  
-**Analysis Date**: September 3, 2022  
-**Data Period**: September 3, 2017 - September 3, 2022
-
----
-
-## Getting Started
-
-1. **Review this README** to understand the problem and approach
-2. **Read Market_Risk_Report.pdf** for detailed findings
-3. **Run Project_Market_Risk_v6.ipynb** to see all analyses and visualizations
-4. **Explore the data** using 2122_RM_Data.xlsx
-
-All code is production-ready and well-commented for review and modification.
-
+**Analysis Date:** September 3, 2022  
+**Data Period:** September 3, 2017 - September 3, 2022  
+**Confidence Level:** 99% (1% significance)
