@@ -1,337 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market Risk Analysis - Getting Started</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        header {
-            background: #1a1a1a;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .subtitle {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        nav {
-            background: white;
-            padding: 15px 20px;
-            margin: 30px 0;
-            border-radius: 4px;
-            text-align: center;
-        }
-        
-        nav a {
-            color: #2a5298;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 500;
-        }
-        
-        nav a:hover {
-            text-decoration: underline;
-        }
-        
-        section {
-            background: white;
-            margin: 30px 0;
-            padding: 40px;
-            border-radius: 4px;
-        }
-        
-        h2 {
-            font-size: 1.6em;
-            margin: 30px 0 20px 0;
-            color: #1a1a1a;
-            border-bottom: 2px solid #2a5298;
-            padding-bottom: 10px;
-        }
-        
-        h3 {
-            font-size: 1.2em;
-            margin: 20px 0 10px 0;
-            color: #2a5298;
-        }
-        
-        .content {
-            line-height: 1.8;
-            color: #555;
-        }
-        
-        .content p {
-            margin-bottom: 15px;
-        }
-        
-        ul {
-            margin: 15px 0 15px 25px;
-        }
-        
-        li {
-            margin-bottom: 8px;
-        }
-        
-        .learning-path {
-            background: #f9f9f9;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-            border-left: 3px solid #2a5298;
-        }
-        
-        .faq-item {
-            background: #f9f9f9;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-        
-        .faq-q {
-            font-weight: 600;
-            color: #2a5298;
-            margin-bottom: 8px;
-        }
-        
-        .faq-a {
-            color: #555;
-            line-height: 1.7;
-        }
-        
-        code {
-            background: #f5f5f5;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 0.9em;
-        }
-        
-        footer {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-            font-size: 0.9em;
-        }
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 1.8em; }
-            section { padding: 25px; }
-            nav a { display: block; margin: 10px 0; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getting Started — Market Risk Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: #0a0a0a; color: #e5e5e5; }
+a { color: inherit; }
+
+.hero { padding: 80px 24px 60px; border-bottom: 1px solid #1f1f1f; max-width: 800px; margin: 0 auto; }
+.label { font-family: 'JetBrains Mono', monospace; font-size: 0.8em; color: #6b7280; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 2.4em; margin: 0 0 12px; color: #fff; font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; }
+.hero p { margin: 0; font-size: 1.05em; color: #9ca3af; font-weight: 400; line-height: 1.6; }
+
+.nav { display: flex; gap: 24px; padding: 20px 24px; border-bottom: 1px solid #1f1f1f; max-width: 800px; margin: 0 auto; }
+.nav a { text-decoration: none; color: #6b7280; font-weight: 500; font-size: 0.9em; }
+.nav a.active { color: #fff; }
+.nav a:hover { color: #d1d5db; }
+
+.container { padding: 48px 24px; max-width: 800px; margin: 0 auto; }
+
+h2 { font-size: 1.5em; margin: 48px 0 20px; color: #fff; font-weight: 600; letter-spacing: -0.3px; }
+h2:first-child { margin-top: 0; }
+h3 { font-size: 1.05em; margin: 28px 0 12px; color: #d1d5db; font-weight: 600; }
+
+p { color: #9ca3af; line-height: 1.75; margin: 0 0 16px; font-size: 0.97em; }
+strong { color: #e5e5e5; font-weight: 600; }
+code { font-family: 'JetBrains Mono', monospace; background: #111; border: 1px solid #1f1f1f; padding: 2px 6px; border-radius: 4px; font-size: 0.88em; color: #d1d5db; }
+
+ul, ol { margin: 12px 0 20px; padding: 0; list-style: none; }
+ol { counter-reset: item; }
+li { margin-bottom: 10px; color: #9ca3af; font-size: 0.94em; line-height: 1.6; padding-left: 22px; position: relative; }
+ul > li::before { content: '—'; position: absolute; left: 0; color: #4b5563; }
+ol > li { counter-increment: item; }
+ol > li::before { content: counter(item) '.'; position: absolute; left: 0; color: #4b5563; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+
+.path { border: 1px solid #1f1f1f; border-radius: 6px; padding: 20px; margin: 16px 0; }
+.path-title { font-family: 'JetBrains Mono', monospace; font-size: 0.78em; color: #6b7280; letter-spacing: 0.3px; margin-bottom: 10px; text-transform: uppercase; }
+.path p { margin-bottom: 10px; }
+
+.faq { border-top: 1px solid #1f1f1f; padding: 20px 0; }
+.faq:last-child { border-bottom: 1px solid #1f1f1f; }
+.faq-q { color: #e5e5e5; font-weight: 600; font-size: 0.96em; margin-bottom: 8px; }
+.faq-a { color: #9ca3af; font-size: 0.93em; line-height: 1.7; }
+
+footer { padding: 40px 24px; border-top: 1px solid #1f1f1f; margin: 20px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; max-width: 800px; }
+footer .meta { color: #4b5563; font-size: 0.78em; font-family: 'JetBrains Mono', monospace; }
+footer a { color: #6b7280; font-size: 0.78em; font-family: 'JetBrains Mono', monospace; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+footer a:hover { color: #d1d5db; }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.9em; }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Market Risk Analysis</h1>
-        <p class="subtitle">Getting Started Guide</p>
-    </header>
-    
-    <nav>
-        <a href="START_HERE.html">← Home</a> | 
-        <a href="index.html">Overview</a> | 
-        <a href="technical.html">Technical</a>
-    </nav>
-    
-    <div class="container">
-        <section>
-            <h2>Learning Paths</h2>
-            <div class="content">
-                <div class="learning-path">
-                    <h3>15-Minute Overview</h3>
-                    <p>Read this README section + project overview. Understand what VaR is and why it matters.</p>
-                    <ul>
-                        <li>What is Value-at-Risk?</li>
-                        <li>Key concepts (beta, EWMA, correlations)</li>
-                        <li>Real-world applications</li>
-                    </ul>
-                </div>
-                
-                <div class="learning-path">
-                    <h3>1-Hour Deep Dive</h3>
-                    <p>Read overview, browse notebook structure, understand methodology.</p>
-                    <ul>
-                        <li>Project overview & context</li>
-                        <li>Methodology section (EWMA, VaR calculation)</li>
-                        <li>Key findings</li>
-                        <li>Market event analysis</li>
-                    </ul>
-                </div>
-                
-                <div class="learning-path">
-                    <h3>3-Hour Full Study</h3>
-                    <p>Read all documentation, run notebook code, analyze outputs.</p>
-                    <ul>
-                        <li>All above materials</li>
-                        <li>Technical formulas and details</li>
-                        <li>Run Jupyter notebook step by step</li>
-                        <li>Replicate visualizations</li>
-                        <li>Experiment with data and parameters</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Setup Guide</h2>
-            <div class="content">
-                <p><strong>Option 1: Local Installation (Recommended)</strong></p>
-                <ul>
-                    <li>Install Anaconda from anaconda.com</li>
-                    <li>Open Anaconda Navigator</li>
-                    <li>Launch Jupyter Notebook</li>
-                    <li>Navigate to project directory</li>
-                    <li>Open <code>Project_Market_Risk_v6.ipynb</code></li>
-                </ul>
-                
-                <p><strong>Option 2: Google Colab (No Installation)</strong></p>
-                <ul>
-                    <li>Go to colab.research.google.com</li>
-                    <li>Upload notebook and Excel file</li>
-                    <li>Run cells sequentially</li>
-                    <li>All libraries pre-installed</li>
-                </ul>
-                
-                <p><strong>Required Libraries:</strong></p>
-                <ul>
-                    <li>pandas - Data manipulation</li>
-                    <li>numpy - Numerical computing</li>
-                    <li>matplotlib - Plotting</li>
-                    <li>scipy - Statistics</li>
-                    <li>seaborn - Visualization (optional)</li>
-                </ul>
-            </div>
-        </section>
-        
-        <section>
-            <h2>FAQ</h2>
-            <div class="content">
-                <div class="faq-item">
-                    <div class="faq-q">Q: What does VaR actually measure?</div>
-                    <div class="faq-a">A: VaR measures maximum expected loss at a given confidence level over a specific time period. "99% confident we won't lose more than X in 1 day."</div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-q">Q: Why compare parametric and historical VaR?</div>
-                    <div class="faq-a">A: Parametric VaR is fast but assumes normal distribution. Historical VaR is robust to extreme events. Comparing them validates findings and reveals assumption violations.</div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-q">Q: What does β = 1.6 mean?</div>
-                    <div class="faq-a">A: The asset is 60% more volatile than the overall market. If market moves 10%, this asset moves ~16% on average.</div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-q">Q: Why EWMA and not simple average?</div>
-                    <div class="faq-a">A: EWMA gives more weight to recent data, capturing volatility spikes during crises. Simple average treats old data equally, missing current market conditions.</div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-q">Q: What does 1-day vs 10-day VaR mean?</div>
-                    <div class="faq-a">A: 1-day VaR: maximum loss tomorrow. 10-day VaR: maximum loss over 10 trading days. Usually scaled by √10 assuming independence.</div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-q">Q: Why does diversification fail in 2020 & 2022?</div>
-                    <div class="faq-a">A: During crises, all assets correlate highly (correlations 0.7-0.9 vs. 0.3-0.5 normally). Flight-to-safety removes diversification benefits.</div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-q">Q: Can I modify the code?</div>
-                    <div class="faq-a">A: Yes. The notebook is self-contained with clear sections. You can change parameters, add analysis, or test different time periods.</div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-q">Q: How do I validate results?</div>
-                    <div class="faq-a">A: Compare parametric vs. historical VaR, test across different periods, stress-test with known market events, check normality assumptions.</div>
-                </div>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Project Structure</h2>
-            <div class="content">
-                <p><strong>Files:</strong></p>
-                <ul>
-                    <li><code>Project_Market_Risk_v6.ipynb</code> - Complete analysis (run this)</li>
-                    <li><code>2122_RM_Data.xlsx</code> - Historical data</li>
-                    <li><code>Market_Risk_Report.pdf</code> - Professional report</li>
-                    <li><code>README.md</code> - Documentation</li>
-                </ul>
-                
-                <p><strong>Notebook Sections:</strong></p>
-                <ul>
-                    <li>Part I: Data loading & exploratory analysis</li>
-                    <li>Part II: Return calculations & normalization</li>
-                    <li>Part III: Volatility estimation (EWMA)</li>
-                    <li>Part IV: Correlation & covariance analysis</li>
-                    <li>Part V: Parametric VaR calculation</li>
-                    <li>Part VI: Historical VaR calculation</li>
-                    <li>Part VII: Comparative analysis & interpretation</li>
-                </ul>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Key Outputs to Expect</h2>
-            <div class="content">
-                <p><strong>Visualizations:</strong></p>
-                <ul>
-                    <li>Time-series of market indices and exchange rates</li>
-                    <li>Distribution plots of returns (normal vs. actual)</li>
-                    <li>EWMA volatility evolution over time</li>
-                    <li>Correlation heatmaps (pre-crisis vs. crisis)</li>
-                    <li>VaR estimates across time periods</li>
-                </ul>
-                
-                <p><strong>Numeric Results:</strong></p>
-                <ul>
-                    <li>Parametric VaR: 2.1% - 3.8% (1-day, 1%)</li>
-                    <li>Historical VaR: varies by period</li>
-                    <li>Volatility ranges: normal 0.5-1.5%, crisis 3-5%</li>
-                    <li>Correlation ranges: 0.3-0.5 (normal), 0.7-0.9 (crisis)</li>
-                </ul>
-            </div>
-        </section>
-    </div>
-    
-    <nav>
-        <a href="START_HERE.html">← Home</a> | 
-        <a href="index.html">Overview</a> | 
-        <a href="technical.html">Technical</a>
-    </nav>
-    
-    <footer>
-        <p><strong>Market Risk Analysis | VaR Framework</strong></p>
-        <p style="margin-top: 10px;">Sep 2017 - Sep 2022 | EWMA | Parametric & Historical VaR | 99% Confidence</p>
-    </footer>
+
+<div class="hero">
+  <div class="label">Getting started</div>
+  <h1>Learning guide</h1>
+  <p>How to work through this project, set up the environment, and the questions people usually ask.</p>
+</div>
+
+<div class="nav">
+  <a href="index.html">Overview</a>
+  <a href="technical.html">Technical</a>
+  <a href="getting-started.html" class="active">Guide</a>
+</div>
+
+<div class="container">
+  <h2>Learning paths</h2>
+
+  <div class="path">
+    <div class="path-title">15 minutes</div>
+    <p>What VaR is, the key concepts (beta, EWMA, correlation), and where it's applied.</p>
+  </div>
+
+  <div class="path">
+    <div class="path-title">1 hour</div>
+    <p>Full methodology — EWMA volatility, VaR calculation, key findings, and the crisis-period analysis.</p>
+  </div>
+
+  <div class="path">
+    <div class="path-title">3 hours</div>
+    <p>Everything above plus running the notebook directly, replicating the visualizations, and testing different parameters.</p>
+  </div>
+
+  <h2>Setup</h2>
+  <h3>Local installation</h3>
+  <ol>
+    <li>Install Anaconda from <code>anaconda.com</code></li>
+    <li>Launch Jupyter Notebook from Anaconda Navigator</li>
+    <li>Navigate to the project directory</li>
+    <li>Open <code>Project_Market_Risk_v6.ipynb</code></li>
+    <li>Run cells sequentially</li>
+  </ol>
+
+  <h3>Google Colab</h3>
+  <ol>
+    <li>Go to <code>colab.research.google.com</code></li>
+    <li>Upload the notebook and the Excel file</li>
+    <li>Run cells sequentially — all libraries are pre-installed</li>
+  </ol>
+
+  <h3>Required libraries</h3>
+  <ul>
+    <li><code>pandas</code> — data manipulation</li>
+    <li><code>numpy</code> — numerical computing</li>
+    <li><code>matplotlib</code> — plotting</li>
+    <li><code>scipy</code> — statistics</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <div class="faq">
+    <div class="faq-q">What does VaR actually measure?</div>
+    <div class="faq-a">Maximum expected loss at a given confidence level over a specific time period — "99% confident we won't lose more than X in one day."</div>
+  </div>
+
+  <div class="faq">
+    <div class="faq-q">Why compare parametric and historical VaR?</div>
+    <div class="faq-a">Parametric is fast but assumes normality. Historical is robust to extreme events. Comparing them validates the findings and exposes where assumptions break down.</div>
+  </div>
+
+  <div class="faq">
+    <div class="faq-q">What does β = 1.6 mean?</div>
+    <div class="faq-a">The asset is 60% more volatile than the market. A 10% market move implies roughly a 16% move in that asset.</div>
+  </div>
+
+  <div class="faq">
+    <div class="faq-q">Why EWMA instead of a simple average?</div>
+    <div class="faq-a">EWMA weights recent data more heavily, capturing volatility spikes during crises. A simple average treats old and new data equally and misses current conditions.</div>
+  </div>
+
+  <div class="faq">
+    <div class="faq-q">Why does diversification fail during crises?</div>
+    <div class="faq-a">Correlations rise sharply — from roughly 0.3–0.5 to 0.7–0.9 — as assets move together under stress, removing much of the diversification benefit.</div>
+  </div>
+
+  <div class="faq">
+    <div class="faq-q">Can the code be modified?</div>
+    <div class="faq-a">Yes. The notebook is self-contained with clearly separated sections — parameters, time windows, and assets can all be changed.</div>
+  </div>
+
+  <h2>Project structure</h2>
+  <ul>
+    <li><code>Project_Market_Risk_v6.ipynb</code> — full analysis</li>
+    <li><code>2122_RM_Data.xlsx</code> — historical market data</li>
+    <li><code>Market_Risk_Report.pdf</code> — written report</li>
+    <li><code>README.md</code> — documentation</li>
+  </ul>
+</div>
+
+<footer>
+  <div class="meta">sep 2017 — sep 2022 · ewma volatility · parametric &amp; historical var</div>
+  <a href="https://github.com/omarja12/Market_Risk">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    github.com/omarja12/market_risk
+  </a>
+</footer>
+
 </body>
 </html>

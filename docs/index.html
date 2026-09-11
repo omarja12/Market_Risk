@@ -1,279 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market Risk Analysis - Overview</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        header {
-            background: #1a1a1a;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .subtitle {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        nav {
-            background: white;
-            padding: 15px 20px;
-            margin: 30px 0;
-            border-radius: 4px;
-            text-align: center;
-        }
-        
-        nav a {
-            color: #2a5298;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 500;
-        }
-        
-        nav a:hover {
-            text-decoration: underline;
-        }
-        
-        section {
-            background: white;
-            margin: 30px 0;
-            padding: 40px;
-            border-radius: 4px;
-        }
-        
-        h2 {
-            font-size: 1.6em;
-            margin: 30px 0 20px 0;
-            color: #1a1a1a;
-            border-bottom: 2px solid #2a5298;
-            padding-bottom: 10px;
-        }
-        
-        h3 {
-            font-size: 1.2em;
-            margin: 20px 0 10px 0;
-            color: #2a5298;
-        }
-        
-        .content {
-            line-height: 1.8;
-            color: #555;
-        }
-        
-        .content p {
-            margin-bottom: 15px;
-        }
-        
-        ul {
-            margin: 15px 0 15px 25px;
-        }
-        
-        li {
-            margin-bottom: 8px;
-        }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .grid-item {
-            background: #fafafa;
-            padding: 20px;
-            border-radius: 4px;
-        }
-        
-        footer {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-            font-size: 0.9em;
-        }
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 1.8em; }
-            .grid { grid-template-columns: 1fr; }
-            section { padding: 25px; }
-            nav a { display: block; margin: 10px 0; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Risk Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: #0a0a0a; color: #e5e5e5; }
+a { color: inherit; }
+
+.hero { padding: 80px 24px 60px; border-bottom: 1px solid #1f1f1f; max-width: 800px; margin: 0 auto; }
+.label { font-family: 'JetBrains Mono', monospace; font-size: 0.8em; color: #6b7280; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 2.4em; margin: 0 0 12px; color: #fff; font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; }
+.hero p { margin: 0; font-size: 1.05em; color: #9ca3af; font-weight: 400; line-height: 1.6; }
+
+.nav { display: flex; gap: 24px; padding: 20px 24px; border-bottom: 1px solid #1f1f1f; max-width: 800px; margin: 0 auto; }
+.nav a { text-decoration: none; color: #6b7280; font-weight: 500; font-size: 0.9em; }
+.nav a.active { color: #fff; }
+.nav a:hover { color: #d1d5db; }
+
+.container { padding: 48px 24px; max-width: 800px; margin: 0 auto; }
+
+h2 { font-size: 1.5em; margin: 48px 0 20px; color: #fff; font-weight: 600; letter-spacing: -0.3px; }
+h2:first-child { margin-top: 0; }
+h3 { font-size: 1.05em; margin: 28px 0 12px; color: #d1d5db; font-weight: 600; }
+
+p { color: #9ca3af; line-height: 1.75; margin: 0 0 16px; font-size: 0.97em; }
+strong { color: #e5e5e5; font-weight: 600; }
+
+ul { margin: 12px 0 20px; padding: 0; list-style: none; }
+li { margin-bottom: 10px; color: #9ca3af; font-size: 0.94em; line-height: 1.6; padding-left: 18px; position: relative; }
+li::before { content: '—'; position: absolute; left: 0; color: #4b5563; }
+
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 24px 0; background: #1f1f1f; border: 1px solid #1f1f1f; border-radius: 6px; overflow: hidden; }
+.stat { background: #0a0a0a; padding: 20px 16px; }
+.stat-num { font-family: 'JetBrains Mono', monospace; font-size: 1.6em; font-weight: 500; color: #fff; }
+.stat-label { font-size: 0.75em; color: #6b7280; margin-top: 6px; letter-spacing: 0.3px; text-transform: uppercase; }
+
+.callout { border-left: 2px solid #4b5563; padding: 4px 0 4px 16px; margin: 24px 0; }
+.callout p { margin: 0; color: #d1d5db; font-size: 0.97em; }
+
+.event { border: 1px solid #1f1f1f; border-radius: 6px; padding: 18px; margin: 12px 0; }
+.event-title { font-family: 'JetBrains Mono', monospace; font-size: 0.78em; color: #6b7280; margin-bottom: 8px; letter-spacing: 0.3px; }
+.event p { margin: 0; font-size: 0.94em; }
+
+footer { padding: 40px 24px; border-top: 1px solid #1f1f1f; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; max-width: 800px; margin: 20px auto 0; }
+footer .meta { color: #4b5563; font-size: 0.78em; font-family: 'JetBrains Mono', monospace; }
+footer a { color: #6b7280; font-size: 0.78em; font-family: 'JetBrains Mono', monospace; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+footer a:hover { color: #d1d5db; }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.9em; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Market Risk Analysis</h1>
-        <p class="subtitle">Value-at-Risk Framework - Project Overview</p>
-    </header>
-    
-    <nav>
-        <a href="START_HERE.html">← Home</a> | 
-        <a href="technical.html">Technical Details</a>
-    </nav>
-    
-    <div class="container">
-        <section>
-            <h2>What is VaR?</h2>
-            <div class="content">
-                <p>Value-at-Risk answers: <strong>"What's the maximum loss at 99% confidence level?"</strong></p>
-                
-                <p>Example: A $1M portfolio with 1-day 1% VaR of $30K means there's a 99% chance it won't lose more than $30K tomorrow.</p>
-                
-                <p><strong>Used by:</strong></p>
-                <ul>
-                    <li>Investment banks - set trading desk limits</li>
-                    <li>Hedge funds - size positions within risk budgets</li>
-                    <li>Insurance companies - model portfolio risk vs. claims</li>
-                    <li>Regulators - enforce Basel III capital requirements</li>
-                </ul>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Key Concepts</h2>
-            <div class="grid">
-                <div class="grid-item">
-                    <h3>Beta (β)</h3>
-                    <p>Market sensitivity. US stocks β=1.6 (60% more volatile than market). German stocks β=1.3 (30% more volatile).</p>
-                </div>
-                <div class="grid-item">
-                    <h3>EWMA Volatility</h3>
-                    <p>Dynamic estimation with λ=0.94. Gives 6% weight to recent data, 94% to history. Captures crisis spikes.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Parametric VaR</h3>
-                    <p>Assumes normal distribution. Fast and elegant but underestimates tail risk during crises.</p>
-                </div>
-                <div class="grid-item">
-                    <h3>Historical VaR</h3>
-                    <p>Uses actual past returns. Robust to extreme events but limited by historical data availability.</p>
-                </div>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Project Findings</h2>
-            <div class="content">
-                <p><strong>Volatility:</strong></p>
-                <ul>
-                    <li>Increased 3-5x during crisis periods</li>
-                    <li>Clustering evident around market shocks</li>
-                    <li>Mean reversion during recovery</li>
-                </ul>
-                
-                <p><strong>Correlations:</strong></p>
-                <ul>
-                    <li>Normal times: 0.3-0.5 (diversification works)</li>
-                    <li>Crisis times: 0.7-0.9 (diversification breaks down)</li>
-                </ul>
-                
-                <p><strong>VaR Estimates:</strong></p>
-                <ul>
-                    <li>1-day 1% Parametric VaR: 2.1% - 3.8%</li>
-                    <li>Historical VaR more accurate for tail events</li>
-                    <li>10-day VaR approximately √10 times 1-day</li>
-                </ul>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Market Events</h2>
-            <div class="content">
-                <p><strong>COVID-19 (March 2020):</strong></p>
-                <ul>
-                    <li>NASDAQ down 25%, DAX down 35%</li>
-                    <li>Volatility spike 3-5x</li>
-                    <li>Diversification collapsed</li>
-                </ul>
-                
-                <p><strong>Russia-Ukraine (February 2022):</strong></p>
-                <ul>
-                    <li>Equity markets down 15%</li>
-                    <li>Currency depreciated 45-50%</li>
-                    <li>Portfolio value in RUB increased (currency effect dominated)</li>
-                </ul>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Methodology</h2>
-            <div class="content">
-                <p><strong>Risk Decomposition:</strong></p>
-                <p>Return(RUB) = Return(Equity) + Return(Forex)</p>
-                <p>This separates market risk from currency risk for independent analysis.</p>
-                
-                <p><strong>Volatility Estimation:</strong></p>
-                <p>EWMA formula with λ = 0.94 emphasizes recent observations while maintaining historical stability.</p>
-                
-                <p><strong>VaR Methods:</strong></p>
-                <ul>
-                    <li>Parametric: Assumes normal distribution</li>
-                    <li>Historical: Uses empirical distribution</li>
-                    <li>Both at 99% confidence level</li>
-                    <li>Both validated against real data</li>
-                </ul>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Data & Scope</h2>
-            <div class="content">
-                <p><strong>Time Period:</strong> September 2017 - September 2022 (5 years, 1,254 observations)</p>
-                
-                <p><strong>Markets:</strong></p>
-                <ul>
-                    <li>NASDAQ 100 (US equities)</li>
-                    <li>DAX (German equities)</li>
-                    <li>USD/RUB (exchange rate)</li>
-                    <li>EUR/RUB (exchange rate)</li>
-                </ul>
-                
-                <p><strong>Portfolio:</strong></p>
-                <ul>
-                    <li>60% US exposure, 40% German exposure</li>
-                    <li>Multi-currency denominated in rubles</li>
-                </ul>
-            </div>
-        </section>
-    </div>
-    
-    <nav>
-        <a href="START_HERE.html">← Home</a> | 
-        <a href="technical.html">Technical Details →</a>
-    </nav>
-    
-    <footer>
-        <p><strong>Market Risk Analysis | VaR Framework</strong></p>
-        <p style="margin-top: 10px;">Sep 2017 - Sep 2022 | EWMA | Parametric & Historical VaR | 99% Confidence</p>
-    </footer>
+
+<div class="hero">
+  <div class="label">Quantitative finance</div>
+  <h1>Market risk analysis</h1>
+  <p>Value-at-Risk framework using EWMA volatility estimation across a multi-currency, multi-asset portfolio.</p>
+</div>
+
+<div class="nav">
+  <a href="index.html" class="active">Overview</a>
+  <a href="technical.html">Technical</a>
+  <a href="getting-started.html">Guide</a>
+</div>
+
+<div class="container">
+  <h2>Project</h2>
+  <p>Analyzes five years of market data using EWMA volatility estimation and two independent VaR methodologies, validated against major crisis periods.</p>
+
+  <div class="grid">
+    <div class="stat"><div class="stat-num">5yr</div><div class="stat-label">Data window</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Risk factors</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">VaR methods</div></div>
+    <div class="stat"><div class="stat-num">99%</div><div class="stat-label">Confidence</div></div>
+  </div>
+
+  <h3>Portfolio composition</h3>
+  <ul>
+    <li>60% US equity exposure — NASDAQ 100, β = 1.6</li>
+    <li>40% German equity exposure — DAX, β = 1.3</li>
+    <li>Dual currency risk — USD/RUB and EUR/RUB</li>
+  </ul>
+
+  <h2>What is Value-at-Risk</h2>
+  <div class="callout">
+    <p>VaR answers one question: what's the worst-case loss at a given confidence level?</p>
+  </div>
+  <p>A $1M portfolio with a 1-day 1% VaR of $30K means there's a 99% chance it won't lose more than $30K the next trading day.</p>
+
+  <h3>Who relies on it</h3>
+  <ul>
+    <li>Investment banks — setting trading desk risk limits</li>
+    <li>Hedge funds — sizing positions within risk budgets</li>
+    <li>Insurers — modeling liabilities against investments</li>
+    <li>Regulators — enforcing Basel III capital requirements</li>
+  </ul>
+
+  <h2>Key findings</h2>
+  <h3>Volatility dynamics</h3>
+  <ul>
+    <li>EWMA volatility increased 3–5x during crisis periods</li>
+    <li>Clear clustering around major market shocks</li>
+    <li>Mean reversion during recovery phases</li>
+  </ul>
+
+  <h3>VaR estimates</h3>
+  <ul>
+    <li>1-day, 1% parametric VaR ranged from 2.1% to 3.8%</li>
+    <li>Historical VaR captured tail events more accurately</li>
+    <li>10-day VaR scales by roughly √10 over the 1-day figure</li>
+  </ul>
+
+  <h3>Correlation dynamics</h3>
+  <ul>
+    <li>Pre-crisis correlations: 0.3–0.5</li>
+    <li>Crisis correlations: 0.7–0.9</li>
+    <li>Diversification benefit reduces sharply under stress</li>
+  </ul>
+
+  <h2>Market events analyzed</h2>
+  <div class="event">
+    <div class="event-title">COVID-19 — MARCH 2020</div>
+    <p>NASDAQ fell 25%, DAX fell 35%. Volatility spiked 3–5x and cross-asset diversification benefit collapsed.</p>
+  </div>
+  <div class="event">
+    <div class="event-title">RUSSIA-UKRAINE — FEBRUARY 2022</div>
+    <p>Equities fell 15%, currency depreciated 45–50%. Ruble-denominated portfolio value rose as FX effects dominated.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="meta">sep 2017 — sep 2022 · ewma volatility · parametric &amp; historical var</div>
+  <a href="https://github.com/omarja12/Market_Risk">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    github.com/omarja12/market_risk
+  </a>
+</footer>
+
 </body>
 </html>

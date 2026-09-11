@@ -1,357 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market Risk Analysis - Technical</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        header {
-            background: #1a1a1a;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .subtitle {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        nav {
-            background: white;
-            padding: 15px 20px;
-            margin: 30px 0;
-            border-radius: 4px;
-            text-align: center;
-        }
-        
-        nav a {
-            color: #2a5298;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 500;
-        }
-        
-        nav a:hover {
-            text-decoration: underline;
-        }
-        
-        section {
-            background: white;
-            margin: 30px 0;
-            padding: 40px;
-            border-radius: 4px;
-        }
-        
-        h2 {
-            font-size: 1.6em;
-            margin: 30px 0 20px 0;
-            color: #1a1a1a;
-            border-bottom: 2px solid #2a5298;
-            padding-bottom: 10px;
-        }
-        
-        h3 {
-            font-size: 1.2em;
-            margin: 20px 0 10px 0;
-            color: #2a5298;
-        }
-        
-        .content {
-            line-height: 1.8;
-            color: #555;
-        }
-        
-        .content p {
-            margin-bottom: 15px;
-        }
-        
-        code {
-            background: #f5f5f5;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 0.9em;
-        }
-        
-        .formula {
-            background: #f9f9f9;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 3px solid #2a5298;
-            border-radius: 3px;
-            overflow-x: auto;
-        }
-        
-        ul {
-            margin: 15px 0 15px 25px;
-        }
-        
-        li {
-            margin-bottom: 8px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        
-        th {
-            background: #f5f5f5;
-            font-weight: 600;
-        }
-        
-        footer {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-            font-size: 0.9em;
-        }
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 1.8em; }
-            section { padding: 25px; }
-            nav a { display: block; margin: 10px 0; }
-            table { font-size: 0.9em; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Details — Market Risk Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: #0a0a0a; color: #e5e5e5; }
+a { color: inherit; }
+
+.hero { padding: 80px 24px 60px; border-bottom: 1px solid #1f1f1f; max-width: 800px; margin: 0 auto; }
+.label { font-family: 'JetBrains Mono', monospace; font-size: 0.8em; color: #6b7280; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 2.4em; margin: 0 0 12px; color: #fff; font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; }
+.hero p { margin: 0; font-size: 1.05em; color: #9ca3af; font-weight: 400; line-height: 1.6; }
+
+.nav { display: flex; gap: 24px; padding: 20px 24px; border-bottom: 1px solid #1f1f1f; max-width: 800px; margin: 0 auto; }
+.nav a { text-decoration: none; color: #6b7280; font-weight: 500; font-size: 0.9em; }
+.nav a.active { color: #fff; }
+.nav a:hover { color: #d1d5db; }
+
+.container { padding: 48px 24px; max-width: 800px; margin: 0 auto; }
+
+h2 { font-size: 1.5em; margin: 48px 0 20px; color: #fff; font-weight: 600; letter-spacing: -0.3px; }
+h2:first-child { margin-top: 0; }
+h3 { font-size: 1.05em; margin: 28px 0 12px; color: #d1d5db; font-weight: 600; }
+
+p { color: #9ca3af; line-height: 1.75; margin: 0 0 16px; font-size: 0.97em; }
+strong { color: #e5e5e5; font-weight: 600; }
+
+ul { margin: 12px 0 20px; padding: 0; list-style: none; }
+li { margin-bottom: 10px; color: #9ca3af; font-size: 0.94em; line-height: 1.6; padding-left: 18px; position: relative; }
+li::before { content: '—'; position: absolute; left: 0; color: #4b5563; }
+
+.formula { border: 1px solid #1f1f1f; background: #111; padding: 20px; border-radius: 6px; margin: 20px 0; overflow-x: auto; font-size: 1.05em; color: #e5e5e5; }
+
+table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.92em; }
+th, td { border: 1px solid #1f1f1f; padding: 12px 14px; text-align: left; }
+th { color: #9ca3af; font-weight: 500; font-family: 'JetBrains Mono', monospace; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.3px; }
+td { color: #d1d5db; }
+
+footer { padding: 40px 24px; border-top: 1px solid #1f1f1f; margin: 20px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; max-width: 800px; }
+footer .meta { color: #4b5563; font-size: 0.78em; font-family: 'JetBrains Mono', monospace; }
+footer a { color: #6b7280; font-size: 0.78em; font-family: 'JetBrains Mono', monospace; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+footer a:hover { color: #d1d5db; }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.9em; }
+  footer { flex-direction: column; align-items: flex-start; }
+  table { font-size: 0.85em; }
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Market Risk Analysis</h1>
-        <p class="subtitle">Technical Details & Formulas</p>
-    </header>
-    
-    <nav>
-        <a href="START_HERE.html">← Home</a> | 
-        <a href="index.html">← Overview</a>
-    </nav>
-    
-    <div class="container">
-        <section>
-            <h2>Risk Decomposition</h2>
-            <div class="content">
-                <p>The portfolio return is decomposed into equity and foreign exchange components:</p>
-                <div class="formula">
-                    $$ r_t^{RUB} = \omega_1 \beta_1 y_{1t}^{EUR} + \omega_2 \beta_2 y_{2t}^{USD} + r_t^{EUR/RUB} + r_t^{USD/RUB} $$
-                </div>
-                <p>Where:</p>
-                <ul>
-                    <li>\(\omega_i\) = weight of asset i (0.6 for US, 0.4 for German)</li>
-                    <li>\(\beta_i\) = beta (systematic risk) of asset i</li>
-                    <li>\(y_{it}\) = market return of asset i</li>
-                    <li>\(r_t^{FX}\) = foreign exchange return</li>
-                </ul>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Volatility Estimation - EWMA</h2>
-            <div class="content">
-                <p>Exponentially Weighted Moving Average with smoothing parameter λ = 0.94:</p>
-                <div class="formula">
-                    $$ \sigma_t^2 = (1 - \lambda) r_{t-1}^2 + \lambda \sigma_{t-1}^2 $$
-                </div>
-                <p>This recursive formula emphasizes recent observations (6% weight) while maintaining historical context (94% weight).</p>
-                
-                <p><strong>Advantages:</strong></p>
-                <ul>
-                    <li>Captures volatility clustering around market shocks</li>
-                    <li>Responds quickly to market changes</li>
-                    <li>Maintains stability during normal periods</li>
-                    <li>Computationally efficient</li>
-                </ul>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Parametric VaR</h2>
-            <div class="content">
-                <p>Assumes normally distributed returns. The 1% VaR is calculated as:</p>
-                <div class="formula">
-                    $$ VaR_{1\%} = \mu - \sigma \times Z_{0.99} $$
-                </div>
-                <p>Where:</p>
-                <ul>
-                    <li>\(\mu\) = mean return</li>
-                    <li>\(\sigma\) = standard deviation (volatility)</li>
-                    <li>\(Z_{0.99}\) = 99th percentile of standard normal (2.326)</li>
-                </ul>
-                
-                <p><strong>Characteristics:</strong></p>
-                <ul>
-                    <li>Mathematically elegant and fast</li>
-                    <li>Requires only mean and variance</li>
-                    <li>Underestimates tail risk during crises</li>
-                    <li>Standard for regulatory reporting (Basel III)</li>
-                </ul>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Historical VaR</h2>
-            <div class="content">
-                <p>Identifies the α-th percentile from empirical distribution of sorted historical returns:</p>
-                <div class="formula">
-                    $$ VaR_\alpha = \text{sorted returns} \left[ \lceil (1-\alpha) \times n \rceil \right] $$
-                </div>
-                <p>Where n = number of historical observations</p>
-                
-                <p><strong>Characteristics:</strong></p>
-                <ul>
-                    <li>No distributional assumptions</li>
-                    <li>Captures actual market behavior</li>
-                    <li>More accurate for tail events</li>
-                    <li>Limited by historical data availability</li>
-                </ul>
-            </div>
-        </section>
-        
-        <section>
-            <h2>10-Day VaR Scaling</h2>
-            <div class="content">
-                <p>Assuming i.i.d. returns, 10-day VaR scales from 1-day VaR:</p>
-                <div class="formula">
-                    $$ VaR_{10-day} = VaR_{1-day} \times \sqrt{10} $$
-                </div>
-                <p>This relationship holds under normality and independence assumptions.</p>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Data Processing</h2>
-            <div class="content">
-                <p><strong>Log Returns Calculation:</strong></p>
-                <div class="formula">
-                    $$ r_t = \ln\left(\frac{P_t}{P_{t-1}}\right) $$
-                </div>
-                <p>Log returns are used throughout (continuous compounding).</p>
-                
-                <p><strong>Portfolio Return:</strong></p>
-                <div class="formula">
-                    $$ r_P = \omega_1 r_1 + \omega_2 r_2 + \ldots + \omega_n r_n $$
-                </div>
-                <p>Weighted sum of component returns.</p>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Covariance Matrix</h2>
-            <div class="content">
-                <p>The covariance matrix captures correlation dynamics between risk factors:</p>
-                <div class="formula">
-                    $$ \Sigma = E[(r - \mu)(r - \mu)^T] $$
-                </div>
-                <p>Estimated using EWMA method to capture time-varying correlations.</p>
-                
-                <p><strong>Key Observations:</strong></p>
-                <ul>
-                    <li>Pre-crisis correlations: 0.3-0.5</li>
-                    <li>Crisis correlations: 0.7-0.9</li>
-                    <li>Diversification benefit reduces during market stress</li>
-                </ul>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Validation & Testing</h2>
-            <div class="content">
-                <p><strong>Backtesting:</strong></p>
-                <ul>
-                    <li>Comparison of parametric vs. historical VaR</li>
-                    <li>Testing across multiple time periods</li>
-                    <li>Analysis during major market events (COVID, Ukraine)</li>
-                </ul>
-                
-                <p><strong>Assumption Testing:</strong></p>
-                <ul>
-                    <li>Normality testing of returns (Jarque-Bera test)</li>
-                    <li>Correlation stability analysis</li>
-                    <li>Stress testing with historical shocks</li>
-                </ul>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Summary Statistics</h2>
-            <div class="content">
-                <table>
-                    <tr>
-                        <th>Metric</th>
-                        <th>Value</th>
-                    </tr>
-                    <tr>
-                        <td>Time Period</td>
-                        <td>Sep 2017 - Sep 2022 (5 years)</td>
-                    </tr>
-                    <tr>
-                        <td>Observations</td>
-                        <td>~1,254 daily returns</td>
-                    </tr>
-                    <tr>
-                        <td>Risk Factors</td>
-                        <td>4 (NASDAQ, DAX, USD/RUB, EUR/RUB)</td>
-                    </tr>
-                    <tr>
-                        <td>EWMA λ</td>
-                        <td>0.94</td>
-                    </tr>
-                    <tr>
-                        <td>Confidence Level</td>
-                        <td>99% (1% significance)</td>
-                    </tr>
-                    <tr>
-                        <td>Methodologies</td>
-                        <td>Parametric, Historical</td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-    </div>
-    
-    <nav>
-        <a href="START_HERE.html">← Home</a> | 
-        <a href="index.html">← Overview</a>
-    </nav>
-    
-    <footer>
-        <p><strong>Market Risk Analysis | VaR Framework</strong></p>
-        <p style="margin-top: 10px;">Sep 2017 - Sep 2022 | EWMA | Parametric & Historical VaR | 99% Confidence</p>
-    </footer>
+
+<div class="hero">
+  <div class="label">Technical reference</div>
+  <h1>Formulas & methodology</h1>
+  <p>The mathematical framework behind the risk decomposition, volatility model, and VaR calculations.</p>
+</div>
+
+<div class="nav">
+  <a href="index.html">Overview</a>
+  <a href="technical.html" class="active">Technical</a>
+  <a href="getting-started.html">Guide</a>
+</div>
+
+<div class="container">
+  <h2>Risk decomposition</h2>
+  <p>Portfolio return is decomposed into equity and foreign exchange components:</p>
+  <div class="formula">
+    $$r_t^{RUB} = \omega_1 \beta_1 y_{1t}^{EUR} + \omega_2 \beta_2 y_{2t}^{USD} + r_t^{EUR/RUB} + r_t^{USD/RUB}$$
+  </div>
+  <ul>
+    <li>$\omega_i$ — weight of asset i (0.6 US, 0.4 German)</li>
+    <li>$\beta_i$ — systematic risk (1.6 US, 1.3 German)</li>
+    <li>$y_{it}$ — market return of asset i</li>
+    <li>$r_t^{FX}$ — foreign exchange return</li>
+  </ul>
+
+  <h2>EWMA volatility</h2>
+  <p>Exponentially weighted moving average with smoothing parameter λ = 0.94:</p>
+  <div class="formula">
+    $$\sigma_t^2 = (1 - \lambda) r_{t-1}^2 + \lambda \sigma_{t-1}^2$$
+  </div>
+  <p>Recent observations get 6% weight, historical data retains 94% weight — enough to react to shocks without overfitting to noise.</p>
+  <h3>Why EWMA</h3>
+  <ul>
+    <li>Captures volatility clustering around shocks</li>
+    <li>Responds quickly to regime changes</li>
+    <li>Computationally efficient, no lookback window to tune</li>
+  </ul>
+
+  <h2>Parametric VaR</h2>
+  <p>Assumes normally distributed returns:</p>
+  <div class="formula">
+    $$VaR_{1\%} = \mu - \sigma \times Z_{0.99}$$
+  </div>
+  <ul>
+    <li>$\mu$ — mean return</li>
+    <li>$\sigma$ — standard deviation</li>
+    <li>$Z_{0.99}$ — 99th percentile of standard normal (2.326)</li>
+  </ul>
+  <h3>Trade-offs</h3>
+  <ul>
+    <li>Fast, requires only mean and variance</li>
+    <li>Underestimates tail risk during crises</li>
+    <li>Basel III's regulatory standard</li>
+  </ul>
+
+  <h2>Historical VaR</h2>
+  <p>Empirical percentile taken from sorted historical returns — no distributional assumption:</p>
+  <div class="formula">
+    $$VaR_\alpha = \text{sorted returns}\left[\lceil (1-\alpha)\times n \rceil\right]$$
+  </div>
+  <ul>
+    <li>Captures actual market behavior, including fat tails</li>
+    <li>More accurate for tail events than the parametric method</li>
+    <li>Limited by the depth of available history</li>
+  </ul>
+
+  <h2>10-day scaling</h2>
+  <p>Assuming i.i.d. returns, the 1-day VaR scales to a 10-day horizon by the square root of time:</p>
+  <div class="formula">
+    $$VaR_{10\text{-}day} = VaR_{1\text{-}day} \times \sqrt{10}$$
+  </div>
+
+  <h2>Log returns</h2>
+  <p>Used throughout for continuous compounding:</p>
+  <div class="formula">
+    $$r_t = \ln\left(\frac{P_t}{P_{t-1}}\right)$$
+  </div>
+
+  <h2>Covariance matrix</h2>
+  <p>Captures correlation dynamics between risk factors, estimated with the same EWMA approach:</p>
+  <div class="formula">
+    $$\Sigma = E[(r - \mu)(r - \mu)^T]$$
+  </div>
+  <p>Correlations sit around 0.3–0.5 in calm periods and rise to 0.7–0.9 during crises, eroding diversification exactly when it matters most.</p>
+
+  <h2>Summary statistics</h2>
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>Time period</td><td>Sep 2017 – Sep 2022</td></tr>
+    <tr><td>Observations</td><td>~1,254 daily returns</td></tr>
+    <tr><td>Risk factors</td><td>NASDAQ 100, DAX, USD/RUB, EUR/RUB</td></tr>
+    <tr><td>EWMA λ</td><td>0.94</td></tr>
+    <tr><td>Confidence level</td><td>99% (1% significance)</td></tr>
+    <tr><td>VaR methods</td><td>Parametric, historical</td></tr>
+  </table>
+</div>
+
+<footer>
+  <div class="meta">sep 2017 — sep 2022 · ewma volatility · parametric &amp; historical var</div>
+  <a href="https://github.com/omarja12/Market_Risk">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    github.com/omarja12/market_risk
+  </a>
+</footer>
+
 </body>
 </html>
