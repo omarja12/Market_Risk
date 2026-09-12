@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Results — Market Risk Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: #0a0a0a; color: #e5e5e5; }
+a { color: inherit; }
+
+.hero { padding: 80px 24px 60px; border-bottom: 1px solid #1f1f1f; max-width: 800px; margin: 0 auto; }
+.label { font-family: 'JetBrains Mono', monospace; font-size: 0.8em; color: #6b7280; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 2.4em; margin: 0 0 12px; color: #fff; font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; }
+.hero p { margin: 0; font-size: 1.05em; color: #9ca3af; font-weight: 400; line-height: 1.6; }
+
+.nav { display: flex; gap: 24px; padding: 20px 24px; border-bottom: 1px solid #1f1f1f; max-width: 800px; margin: 0 auto; }
+.nav a { text-decoration: none; color: #6b7280; font-weight: 500; font-size: 0.9em; }
+.nav a.active { color: #fff; }
+.nav a:hover { color: #d1d5db; }
+
+.container { padding: 48px 24px; max-width: 800px; margin: 0 auto; }
+
+h2 { font-size: 1.5em; margin: 48px 0 20px; color: #fff; font-weight: 600; letter-spacing: -0.3px; }
+h2:first-child { margin-top: 0; }
+h3 { font-size: 1.05em; margin: 28px 0 12px; color: #d1d5db; font-weight: 600; }
+
+p { color: #9ca3af; line-height: 1.75; margin: 0 0 16px; font-size: 0.97em; }
+strong { color: #e5e5e5; font-weight: 600; }
+
+ul { margin: 12px 0 20px; padding: 0; list-style: none; }
+li { margin-bottom: 10px; color: #9ca3af; font-size: 0.94em; line-height: 1.6; padding-left: 18px; position: relative; }
+li::before { content: '—'; position: absolute; left: 0; color: #4b5563; }
+
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 24px 0; background: #1f1f1f; border: 1px solid #1f1f1f; border-radius: 6px; overflow: hidden; }
+.stat { background: #0a0a0a; padding: 20px 16px; }
+.stat-num { font-family: 'JetBrains Mono', monospace; font-size: 1.5em; font-weight: 500; color: #fff; }
+.stat-label { font-size: 0.75em; color: #6b7280; margin-top: 6px; letter-spacing: 0.3px; text-transform: uppercase; }
+
+.chart { border: 1px solid #1f1f1f; border-radius: 6px; overflow: hidden; margin: 16px 0 8px; background: #0a0a0a; }
+.chart img { display: block; width: 100%; height: auto; }
+.caption { font-size: 0.88em; color: #6b7280; line-height: 1.6; margin: 0 0 32px; }
+
+.note { border-left: 2px solid #4b5563; padding: 4px 0 4px 16px; margin: 20px 0 32px; }
+.note p { margin: 0; color: #d1d5db; font-size: 0.95em; }
+
+footer { padding: 40px 24px; border-top: 1px solid #1f1f1f; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; max-width: 800px; margin: 20px auto 0; }
+footer .meta { color: #4b5563; font-size: 0.78em; font-family: 'JetBrains Mono', monospace; }
+footer a { color: #6b7280; font-size: 0.78em; font-family: 'JetBrains Mono', monospace; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+footer a:hover { color: #d1d5db; }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.9em; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="label">Results</div>
+  <h1>Charts &amp; numbers</h1>
+  <p>Every chart and figure on this page is generated directly from the notebook's own logic run against the real dataset — nothing here is estimated or approximated.</p>
+</div>
+
+<div class="nav">
+  <a href="index.html">Overview</a>
+  <a href="technical.html">Technical</a>
+  <a href="results.html" class="active">Results</a>
+  <a href="getting-started.html">Guide</a>
+</div>
+
+<div class="container">
+
+  <h2>Data window</h2>
+  <div class="grid">
+    <div class="stat"><div class="stat-num">Feb 2017</div><div class="stat-label">Start</div></div>
+    <div class="stat"><div class="stat-num">Mar 2022</div><div class="stat-label">End</div></div>
+    <div class="stat"><div class="stat-num">1,233</div><div class="stat-label">Daily returns</div></div>
+    <div class="stat"><div class="stat-num">λ=0.94</div><div class="stat-label">EWMA decay</div></div>
+  </div>
+
+  <h2>Index levels</h2>
+  <div class="chart"><img src="assets/index_levels.png" alt="NASDAQ 100 and DAX index levels, rebased to 100 at the start of the sample"></div>
+  <p class="caption">NASDAQ 100 and DAX, rebased to 100 at the start of the sample. Shaded bands mark the COVID-19 crash (Feb–May 2020) and the run-up to the Russia-Ukraine invasion (Feb–Mar 2022).</p>
+
+  <h2>Portfolio returns</h2>
+  <div class="chart"><img src="assets/portfolio_returns.png" alt="Daily ruble-denominated portfolio returns over time"></div>
+  <p class="caption">Daily portfolio return in rubles (equity + forex components combined). Both crisis windows show a clear jump in the size of daily moves.</p>
+  <div class="chart"><img src="assets/returns_histogram.png" alt="Histogram of daily portfolio returns"></div>
+  <p class="caption">Distribution of daily returns — broadly bell-shaped with visible fat tails on both sides, which is exactly why historical VaR and parametric VaR disagree during stress.</p>
+
+  <h2>EWMA volatility</h2>
+  <div class="chart"><img src="assets/ewma_volatility.png" alt="EWMA annualized volatility for the equity and forex components over time"></div>
+  <p class="caption">Equity volatility spiked to ~106% annualized during COVID-19, roughly 4–5x its typical level. Forex volatility stayed comparatively calm during COVID but spiked to ~73% annualized around the 2022 invasion — briefly the more volatile of the two components.</p>
+
+  <h2>EWMA correlation</h2>
+  <div class="chart"><img src="assets/ewma_correlation.png" alt="EWMA correlation between equity and forex returns over time"></div>
+  <div class="note">
+    <p>This is the most counter-intuitive result in the analysis: the equity–forex correlation is <strong>negative for essentially the entire sample</strong> (ranging from about +0.3 to −0.8), and it moves <em>further</em> negative during both crises rather than converging toward +1. For a ruble-based investor holding US/German equities, that means currency depreciation during a shock tends to offset equity losses rather than compound them — a natural hedge, not a diversification breakdown.</p>
+  </div>
+
+  <h2>Parametric vs. historical VaR</h2>
+  <div class="chart"><img src="assets/var_comparison.png" alt="Bar chart comparing 1-day 1% parametric and historical VaR on 23 Feb 2022 and 9 Mar 2022"></div>
+  <p class="caption">1-day, 1% VaR immediately before the invasion (23 Feb 2022) and two weeks later (9 Mar 2022). Parametric VaR more than doubled — from ~4.1% to ~10.1% — because EWMA volatility reacts sharply to a single extreme return. Historical VaR barely moved (~4.2% → ~4.4%) since it's an empirical quantile over the full return history, not just the latest shock. Neither method is "wrong" — they answer slightly different questions, and comparing them is the point.</p>
+
+</div>
+
+<footer>
+  <div class="meta">feb 2017 — mar 2022 · ewma volatility · parametric &amp; historical var</div>
+  <a href="https://github.com/omarja12/Market_Risk">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    github.com/omarja12/market_risk
+  </a>
+</footer>
+
+</body>
+</html>

@@ -1,6 +1,8 @@
 # Market Risk Analysis - Value-at-Risk Framework
 
-A comprehensive quantitative analysis implementing Value-at-Risk (VaR) methodology for a multi-currency, multi-asset portfolio. The project analyzes 5 years of market data using EWMA volatility estimation and dual VaR approaches (parametric and historical).
+**🔗 Live site: [omarja12.github.io/Market_Risk](https://omarja12.github.io/Market_Risk/)** — overview, formulas, charts, and a getting-started guide.
+
+A comprehensive quantitative analysis implementing Value-at-Risk (VaR) methodology for a multi-currency, multi-asset portfolio. The project analyzes just over 5 years of market data using EWMA volatility estimation and dual VaR approaches (parametric and historical).
 
 ## Overview
 
@@ -9,9 +11,9 @@ A comprehensive quantitative analysis implementing Value-at-Risk (VaR) methodolo
 - 40% German equity exposure (DAX, β = 1.3)
 - Dual currency risk (USD/RUB and EUR/RUB)
 
-**Time Period:** September 3, 2017 - September 3, 2022 (5 years)
+**Time Period:** February 9, 2017 - March 9, 2022 (~5 years)
 
-**Analysis Date:** September 3, 2022
+**Analysis Date:** March 9, 2022
 
 **Methodologies:** Parametric VaR, Historical VaR, EWMA volatility estimation
 
@@ -75,27 +77,27 @@ Both methods calculated at 1% significance level (99% confidence).
 
 ### Correlation Dynamics
 
-- Pre-crisis correlations: 0.3-0.5 (equity and forex relatively independent)
-- Crisis correlations: 0.7-0.9 (diversification benefit reduced)
-- Correlation breakdown most pronounced during geopolitical events
+- Equity–forex correlation is **negative** across the whole sample (roughly +0.3 to -0.8), not positive
+- It moves further negative during crises — currency moves partly offset equity losses instead of compounding them
+- This acts as a natural hedge for a ruble-based investor holding foreign equities
 
 ### VaR Estimates
 
-- 1-day 1% Parametric VaR: 2.1% - 3.8% depending on period
-- Historical VaR captured tail events more accurately than parametric approach
-- 10-day VaR approximately √10 times 1-day VaR (assuming i.i.d. returns)
+- 1-day 1% Parametric VaR rose from ~4.1% (23 Feb 2022) to ~10.1% (9 Mar 2022) as EWMA volatility reacted to the shock
+- 1-day 1% Historical VaR barely moved over the same window (~4.2% → ~4.4%), since it reflects the full return history rather than the latest shock
+- 10-day VaR scales by exactly √10 over the 1-day figure (a property of the model, assuming i.i.d. returns)
 
 ### Event Analysis
 
-**March 2020 (COVID-19):**
-- NASDAQ declined 25%, DAX declined 35%
-- Extreme volatility spike
-- Diversification collapsed
+**COVID-19 (Feb–Mar 2020, peak to trough):**
+- NASDAQ fell ~28%, DAX fell ~39%
+- Equity EWMA volatility spiked ~4-5x to ~106% annualized
+- Equity–forex correlation dropped toward -0.8
 
-**February 2022 (Russia-Ukraine):**
-- Equity markets declined ~15%
-- Currency depreciated 45-50%
-- Net portfolio effect: value increased in RUB due to currency effects
+**Russia-Ukraine (23 Feb – 9 Mar 2022):**
+- DAX fell ~5%, NASDAQ was roughly flat
+- USD/RUB and EUR/RUB depreciated 38-48%
+- Net portfolio effect: ruble-denominated value *rose* ~30-50%, since equity and forex returns are negatively correlated
 
 ## Project Structure
 
@@ -104,6 +106,9 @@ Project_Market_Risk_v6.ipynb    # Complete Jupyter notebook with analysis
 2122_RM_Data.xlsx               # Historical market data
 Market_Risk_Report.pdf          # Detailed findings and charts
 README.md                       # This file
+LICENSE                         # MIT license
+requirements.txt                # Python dependencies
+docs/                           # Live documentation website (GitHub Pages)
 ```
 
 ## Technical Implementation
@@ -141,6 +146,7 @@ All results are contained in the Jupyter notebook and PDF report.
 - `2122_RM_Data.xlsx` - Historical NASDAQ, DAX, and forex data
 - `Market_Risk_Report.pdf` - Professional report with findings
 - `README.md` - This documentation
+- `docs/` - Live documentation website ([omarja12.github.io/Market_Risk](https://omarja12.github.io/Market_Risk/))
 
 ## Usage
 
@@ -152,7 +158,7 @@ Open `Project_Market_Risk_v6.ipynb` in Jupyter and run cells sequentially. The n
 5. Comparative analysis
 6. Visualizations
 
-No external dependencies beyond standard Python data science libraries.
+Install dependencies first with `pip install -r requirements.txt`.
 
 ## Validation
 
@@ -171,7 +177,7 @@ The analysis validates assumptions and methodologies through:
 
 **Initial Observations:** First observation excluded (no prior day for return calculation)
 
-**Usable Sample:** ~1,254 daily returns across 5-year period
+**Usable Sample:** 1,233 daily returns across the sample period
 
 ## References
 
@@ -180,8 +186,12 @@ Methodology follows industry standards including:
 - RiskMetrics EWMA approach
 - Standard VaR estimation techniques
 
+## License
+
+Released under the [MIT License](LICENSE).
+
 ---
 
-**Analysis Date:** September 3, 2022  
-**Data Period:** September 3, 2017 - September 3, 2022  
+**Analysis Date:** March 9, 2022  
+**Data Period:** February 9, 2017 - March 9, 2022  
 **Confidence Level:** 99% (1% significance)

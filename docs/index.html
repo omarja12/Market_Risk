@@ -69,6 +69,7 @@ footer a:hover { color: #d1d5db; }
 <div class="nav">
   <a href="index.html" class="active">Overview</a>
   <a href="technical.html">Technical</a>
+  <a href="results.html">Results</a>
   <a href="getting-started.html">Guide</a>
 </div>
 
@@ -105,40 +106,42 @@ footer a:hover { color: #d1d5db; }
   </ul>
 
   <h2>Key findings</h2>
+  <p>Numbers below are recomputed directly from the notebook's own logic run against the
+  real data — see the <a href="results.html" style="color:#e5e5e5; text-decoration: underline;">Results page</a> for the charts.</p>
   <h3>Volatility dynamics</h3>
   <ul>
-    <li>EWMA volatility increased 3–5x during crisis periods</li>
-    <li>Clear clustering around major market shocks</li>
+    <li>Equity EWMA volatility spiked from a ~15–25% baseline to ~106% annualized during COVID-19</li>
+    <li>Forex volatility spiked again in Feb–Mar 2022, briefly exceeding its COVID peak (~73% annualized)</li>
     <li>Mean reversion during recovery phases</li>
   </ul>
 
   <h3>VaR estimates</h3>
   <ul>
-    <li>1-day, 1% parametric VaR ranged from 2.1% to 3.8%</li>
-    <li>Historical VaR captured tail events more accurately</li>
-    <li>10-day VaR scales by roughly √10 over the 1-day figure</li>
+    <li>1-day 1% parametric VaR jumped from ~4.1% (23 Feb 2022) to ~10.1% (9 Mar 2022) as EWMA reacted to the FX shock</li>
+    <li>Historical VaR barely moved over the same window (~4.2% → ~4.4%) — it reflects the full return history, not just the latest shock</li>
+    <li>10-day VaR scales by exactly √10 over the 1-day figure (a property of the model, not an independent finding)</li>
   </ul>
 
   <h3>Correlation dynamics</h3>
   <ul>
-    <li>Pre-crisis correlations: 0.3–0.5</li>
-    <li>Crisis correlations: 0.7–0.9</li>
-    <li>Diversification benefit reduces sharply under stress</li>
+    <li>Equity–forex correlation is <strong>negative</strong> throughout the sample (roughly +0.3 to −0.8), not positive</li>
+    <li>It turns more negative during both crises — a currency depreciation partly offset equity losses instead of adding to them</li>
+    <li>This is a natural hedge for a ruble-based investor holding foreign equities, not a diversification breakdown</li>
   </ul>
 
   <h2>Market events analyzed</h2>
   <div class="event">
-    <div class="event-title">COVID-19 — MARCH 2020</div>
-    <p>NASDAQ fell 25%, DAX fell 35%. Volatility spiked 3–5x and cross-asset diversification benefit collapsed.</p>
+    <div class="event-title">COVID-19 — FEB–MAR 2020</div>
+    <p>NASDAQ fell ~28%, DAX fell ~39% peak-to-trough. Equity volatility spiked ~4x; the equity–forex correlation dropped toward −0.8.</p>
   </div>
   <div class="event">
-    <div class="event-title">RUSSIA-UKRAINE — FEBRUARY 2022</div>
-    <p>Equities fell 15%, currency depreciated 45–50%. Ruble-denominated portfolio value rose as FX effects dominated.</p>
+    <div class="event-title">RUSSIA-UKRAINE — 23 FEB TO 9 MAR 2022</div>
+    <p>DAX fell 5%, NASDAQ was roughly flat, while USD/RUB and EUR/RUB depreciated 38–48%. Because equity and forex returns are negatively correlated, the portfolio's ruble value <em>rose</em> ~30–50% despite the shock.</p>
   </div>
 </div>
 
 <footer>
-  <div class="meta">sep 2017 — sep 2022 · ewma volatility · parametric &amp; historical var</div>
+  <div class="meta">feb 2017 — mar 2022 · ewma volatility · parametric &amp; historical var</div>
   <a href="https://github.com/omarja12/Market_Risk">
     <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
     github.com/omarja12/market_risk
