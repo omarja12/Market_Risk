@@ -181,10 +181,12 @@ The analysis validates assumptions and methodologies through:
 
 ## References
 
-Methodology follows industry standards including:
-- Basel III risk framework
-- RiskMetrics EWMA approach
-- Standard VaR estimation techniques
+- Basel Committee on Banking Supervision (2019), ["Minimum Capital Requirements for Market Risk"](https://www.bis.org/bcbs/publ/d457.htm) — the current regulatory framework behind the 99% confidence / 1% significance level used throughout.
+- Basel Committee on Banking Supervision (1996), ["Amendment to the Capital Accord to Incorporate Market Risks"](https://www.bis.org/publ/bcbs24.htm) — the original text that made VaR a bank capital requirement.
+- J.P. Morgan/Reuters (1996), *RiskMetrics — Technical Document*, 4th ed. — source of the EWMA volatility/covariance recursion (λ = 0.94) used for the volatility and correlation estimates ([overview](https://en.wikipedia.org/wiki/RiskMetrics)).
+- Boudoukh, J., Richardson, M., and Whitelaw, R. (1998), ["The Best of Both Worlds: A Hybrid Approach to Calculating Value at Risk,"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=51420) *Risk*, 11(5), 64–67 — the age-weighted historical simulation method used in the EWMA-weighted historical VaR calculation.
+- Jorion, P. (2007), *Value at Risk: The New Benchmark for Managing Financial Risk*, 3rd ed., McGraw-Hill — general reference for the parametric vs. historical VaR comparison and horizon scaling.
+- Hull, J. C., *Risk Management and Financial Institutions*, Wiley — general reference for volatility modeling and market risk measurement.
 
 ## License
 
