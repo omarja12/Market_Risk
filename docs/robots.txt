@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://omarja12.github.io/Market_Risk/sitemap.xml

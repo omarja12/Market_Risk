@@ -1,0 +1,35 @@
+name: Validate notebook
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Register Jupyter kernel
+        run: python -m ipykernel install --user --name python3
+
+      - name: Execute notebook end-to-end
+        run: |
+          jupyter nbconvert --to notebook --execute \
+            --ExecutePreprocessor.kernel_name=python3 \
+            --ExecutePreprocessor.timeout=300 \
+            --output executed.ipynb \
+            Project_Market_Risk_v6.ipynb
+
+      - name: Check VaR outputs against known-correct values
+        run: python .github/scripts/check_var.py

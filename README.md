@@ -1,5 +1,7 @@
 # Market Risk Analysis - Value-at-Risk Framework
 
+[![Validate notebook](https://github.com/omarja12/Market_Risk/actions/workflows/ci.yml/badge.svg)](https://github.com/omarja12/Market_Risk/actions/workflows/ci.yml)
+
 **🔗 Live site: [omarja12.github.io/Market_Risk](https://omarja12.github.io/Market_Risk/)** — overview, formulas, charts, and a getting-started guide.
 
 A comprehensive quantitative analysis implementing Value-at-Risk (VaR) methodology for a multi-currency, multi-asset portfolio. The project analyzes just over 5 years of market data using EWMA volatility estimation and dual VaR approaches (parametric and historical).

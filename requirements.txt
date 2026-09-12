@@ -1,4 +1,8 @@
-pandas
+# pandas 3.0 made in-place dtype upcasting (e.g. ds['col'].iloc[0] = <float>
+# on an int64 column) a hard error instead of a silent/warned cast, which the
+# notebook relies on in several cells. Pinned to the 2.x line so the notebook
+# actually runs as published.
+pandas>=2,<3
 numpy
 matplotlib
 seaborn
@@ -6,3 +10,6 @@ scipy
 requests
 openpyxl
 jupyter
+nbconvert
+nbclient
+ipykernel
