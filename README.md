@@ -1,6 +1,8 @@
 # Market Risk Analysis - Value-at-Risk Framework
 
 [![Validate notebook](https://github.com/omarja12/Market_Risk/actions/workflows/ci.yml/badge.svg)](https://github.com/omarja12/Market_Risk/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-informational.svg)](LICENSE)
+[![Python 3](https://img.shields.io/badge/Python-3.x-blue.svg)](requirements.txt)
 
 **🔗 Live site: [omarja12.github.io/Market_Risk](https://omarja12.github.io/Market_Risk/)** — overview, formulas, charts, and a getting-started guide.
 
@@ -18,6 +20,8 @@ A comprehensive quantitative analysis implementing Value-at-Risk (VaR) methodolo
 **Analysis Date:** March 9, 2022
 
 **Methodologies:** Parametric VaR, Historical VaR, EWMA volatility estimation
+
+![NASDAQ 100 and DAX index levels, rebased to 100, with the COVID-19 and Russia-Ukraine crisis windows shaded](docs/assets/index_levels.png)
 
 ## Data
 
@@ -77,17 +81,23 @@ Both methods calculated at 1% significance level (99% confidence).
 - Volatility clustering evident around market shocks
 - Mean reversion observed during recovery periods
 
+![EWMA annualized volatility for the equity and forex components, spiking during COVID-19 and the 2022 invasion](docs/assets/ewma_volatility.png)
+
 ### Correlation Dynamics
 
 - Equity–forex correlation is **negative** across the whole sample (roughly +0.3 to -0.8), not positive
 - It moves further negative during crises — currency moves partly offset equity losses instead of compounding them
 - This acts as a natural hedge for a ruble-based investor holding foreign equities
 
+![EWMA correlation between equity and forex returns, staying negative throughout and dropping further during crises](docs/assets/ewma_correlation.png)
+
 ### VaR Estimates
 
 - 1-day 1% Parametric VaR rose from ~4.1% (23 Feb 2022) to ~10.1% (9 Mar 2022) as EWMA volatility reacted to the shock
 - 1-day 1% Historical VaR barely moved over the same window (~4.2% → ~4.4%), since it reflects the full return history rather than the latest shock
 - 10-day VaR scales by exactly √10 over the 1-day figure (a property of the model, assuming i.i.d. returns)
+
+![Bar chart comparing 1-day 1% parametric and historical VaR on 23 Feb 2022 and 9 Mar 2022](docs/assets/var_comparison.png)
 
 ### Event Analysis
 
@@ -140,7 +150,7 @@ The analysis produces:
 - VaR estimates for different time horizons
 - Comparative analysis of parametric vs. historical VaR
 
-All results are contained in the Jupyter notebook and PDF report.
+All results are contained in the Jupyter notebook and PDF report, and the key charts are also on the [Results page](https://omarja12.github.io/Market_Risk/results.html) of the live site.
 
 ## Files
 

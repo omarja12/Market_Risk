@@ -1,0 +1,20 @@
+# Byte-compiled / cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+executed.ipynb
+executed_*.ipynb
+
+# Side-effect output the notebook itself writes when run
+Market_Risk_Project.xlsx
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS cruft
+.DS_Store
+Thumbs.db
